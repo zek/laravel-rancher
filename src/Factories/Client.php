@@ -19,15 +19,14 @@ class Client implements \Benmag\Rancher\Contracts\Client {
 
     /**
      * @param $baseUrl
-     * @param $apiKey
+     * @param $accessKey
+     * @param $secretKey
      */
-    public function __construct($baseUrl, $apiKey)
+    public function __construct($baseUrl, $accessKey, $secretKey)
     {
         $this->client = new HttpClient([
-            'base_url' => $baseUrl,
-            'defaults' => [
-                'query' => [ 'api_key' => $apiKey ]
-            ]
+            'base_uri' => $baseUrl,
+            'auth' => [$accessKey, $secretKey]
         ]);
     }
 
@@ -40,6 +39,7 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     public function get($endPoint, array $params = [ ])
     {
+
         $response = $this->client->get($endPoint, [ 'query' => $params ]);
         switch ($response->getHeader('content-type'))
         {

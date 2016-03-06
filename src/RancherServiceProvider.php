@@ -48,7 +48,7 @@ class RancherServiceProvider extends ServiceProvider
         $this->app->singleton('rancher', function ($app)
         {
             $config = $app['config']->get('rancher');
-            $client = new Factories\Client($config['baseUrl'], $config['apiKey']);
+            $client = new Factories\Client($config['baseUrl'], $config['accessKey'], $config['secretKey']);
             return new Rancher($client);
         });
 
