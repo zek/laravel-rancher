@@ -8,7 +8,7 @@ namespace Benmag\Rancher\Contracts;
  * @package  Rancher
  * @author   @benmagg
  */
-interface ClientInterface {
+interface Client {
 
     /**
      * @param       $endPoint

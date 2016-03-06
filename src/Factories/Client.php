@@ -2,7 +2,6 @@
 
 namespace Benmag\Rancher\Factories;
 
-use Benmag\Rancher\Contracts\ClientInterface;
 use GuzzleHttp\Client as HttpClient;
 
 /**
@@ -11,7 +10,7 @@ use GuzzleHttp\Client as HttpClient;
  * @package  Rancher
  * @author   @benmagg
  */
-class Client implements ClientInterface {
+class Client implements \Benmag\Rancher\Contracts\Client {
 
     /**
      * @var HttpClient
