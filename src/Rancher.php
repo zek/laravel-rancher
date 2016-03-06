@@ -1,6 +1,7 @@
 <?php
 
 namespace Benmag\Rancher;
+use Benmag\Rancher\Factories\Api\Host;
 
 /**
  * Rancher API wrapper for Laravel
@@ -17,8 +18,12 @@ class Rancher {
         $this->client = $client;
     }
 
-    public function foo()
+    /**
+     * @return Factories\Api\Host
+     */
+    public function host()
     {
-        return "Hello World";
+        return new Host($this->client);
     }
+
 }
