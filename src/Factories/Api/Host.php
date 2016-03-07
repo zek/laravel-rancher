@@ -25,9 +25,7 @@ class Host implements \Benmag\Rancher\Contracts\Api\Host
     }
 
     /**
-     * Display all hosts.
-     *
-     * @return HostEntity[]
+     * {@inheritdoc}
      */
     public function all()
     {
@@ -35,7 +33,7 @@ class Host implements \Benmag\Rancher\Contracts\Api\Host
         // Get all hosts from Rancher API
         $hosts = $this->client->get("hosts");
 
-        // decode json response
+        // Decode the json response
         $hosts = json_decode($hosts);
 
         // Convert to HostEntity
@@ -46,10 +44,7 @@ class Host implements \Benmag\Rancher\Contracts\Api\Host
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param $id
-     * @return Host
+     * {@inheritdoc}
      */
     public function get($id)
     {
@@ -57,25 +52,50 @@ class Host implements \Benmag\Rancher\Contracts\Api\Host
         // Get the host
         $host = $this->client->get("hosts/$id");
 
-        // Convert it to HostEntity then return
-        return new HostEntity(json_decode($host));
+        // Parse json response
+        $host = json_decode($host);
+
+        // Instantiate new HostEntity with response
+        return new HostEntity($host);
 
     }
 
     /**
-     * Deactivate host
+     * {@inheritdoc}
      */
-    public function deactivate()
+    public function activate($id)
     {
-        // TODO
+
+        // Send "activate" host request
+        $host = $this->client->post("hosts/$id", [
+            'action' => 'activate'
+        ]);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Instantiate HostEntity with response
+        return new HostEntity($host);
+
     }
 
     /**
-     * Update host
+     * {@inheritdoc}
      */
-    public function update()
+    public function deactivate($id)
     {
-        // TODO
+
+        // Send "deactivate" host request
+        $host = $this->client->post("hosts/$id", [
+            'action' => 'deactivate'
+        ]);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create HostEntity from response
+        return new HostEntity($host);
+
     }
 
 }
