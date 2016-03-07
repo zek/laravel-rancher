@@ -2,7 +2,6 @@
 
 namespace Benmag\Rancher\Factories\Api;
 
-use Benmag\Rancher\Factories\Client;
 use Benmag\Rancher\Factories\Entity\Host as HostEntity;
 
 /**
