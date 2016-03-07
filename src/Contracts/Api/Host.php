@@ -11,19 +11,14 @@ namespace Benmag\Rancher\Contracts\Api;
  */
 interface Host {
 
+
     /**
-     * Get all of the hosts.
-     *
-     * @return \Benmag\Rancher\Factories\Entity\Host[]
+     * {@inheritdoc}
      */
     public function all();
 
-
     /**
-     * Get a specified host.
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Host
+     * {@inheritdoc}
      */
     public function get($id);
 

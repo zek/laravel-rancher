@@ -47,7 +47,9 @@ abstract class AbstractApi
     }
 
     /**
-     * {@inheritdoc}
+     * Get all of the Entities for the API resource.
+     *
+     * @return mixed
      */
     public function all()
     {
@@ -64,8 +66,12 @@ abstract class AbstractApi
 
     }
 
+
     /**
-     * {@inheritdoc}
+     * Get a specified Entity from the API resource.
+     *
+     * @param $id
+     * @return mixed
      */
     public function get($id)
     {
