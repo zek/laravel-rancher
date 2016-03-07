@@ -3,6 +3,7 @@
 namespace Benmag\Rancher;
 
 use Benmag\Rancher\Factories\Api\Container;
+use Benmag\Rancher\Factories\Api\Environment;
 use Benmag\Rancher\Factories\Api\Host;
 use Benmag\Rancher\Factories\Api\Project;
 use Benmag\Rancher\Factories\Api\Service;
@@ -36,6 +37,14 @@ class Rancher {
     public function container()
     {
         return new Container($this->client);
+    }
+
+    /**
+     * @return Factories\Api\Environment
+     */
+    public function environment()
+    {
+        return new Environment($this->client);
     }
 
     /**
