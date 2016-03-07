@@ -2,7 +2,7 @@
 
 namespace Benmag\Rancher\Factories\Api;
 
-use \Benmag\Rancher\Factories\Entity\Service as ServiceEntity;
+use Benmag\Rancher\Factories\Entity\Service as ServiceEntity;
 
 /**
  * Rancher API wrapper for Laravel
