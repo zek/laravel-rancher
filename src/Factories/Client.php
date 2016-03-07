@@ -26,20 +26,18 @@ class Client implements \Benmag\Rancher\Contracts\Client {
     {
         $this->client = new HttpClient([
             'base_uri' => $baseUrl,
-            'auth' => [$accessKey, $secretKey]
+            'auth' => [$accessKey, $secretKey],
         ]);
     }
 
     /**
-     * @param       $endPoint
+     * @param $endPoint
      * @param array $params
-     *
      * @return mixed
      * @throws \Exception
      */
-    public function get($endPoint, array $params = [ ])
+    public function get($endPoint, array $params = [])
     {
-
         $response = $this->client->get($endPoint, [ 'query' => $params ]);
         switch ($response->getHeader('content-type'))
         {
@@ -50,4 +48,24 @@ class Client implements \Benmag\Rancher\Contracts\Client {
                 return $response->getBody()->getContents();
         }
     }
+
+    /**
+     * @param $endPoint
+     * @param array $params
+     * @return string
+     * @throws \Exception
+     */
+    public function post($endPoint, array $params = [])
+    {
+        $response = $this->client->post($endPoint, [ 'query' => $params ]);
+        switch ($response->getHeader('content-type'))
+        {
+            case "application/json":
+                return $response->json();
+                break;
+            default:
+                return $response->getBody()->getContents();
+        }
+    }
+
 }

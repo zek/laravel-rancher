@@ -11,11 +11,17 @@ namespace Benmag\Rancher\Contracts;
 interface Client {
 
     /**
-     * @param       $endPoint
-     * @param array $options
-     *
+     * @param $endPoint
+     * @param array $params
      * @return mixed
      */
-    public function get($endPoint, array $options = []);
+    public function get($endPoint, array $params = []);
+
+    /**
+     * @param $endPoint
+     * @param array $params
+     * @return mixed
+     */
+    public function post($endPoint, array $params = []);
 
 }
