@@ -1,6 +1,7 @@
 <?php
 
 namespace Benmag\Rancher;
+use Benmag\Rancher\Factories\Api\Container;
 use Benmag\Rancher\Factories\Api\Host;
 
 /**
@@ -26,4 +27,11 @@ class Rancher {
         return new Host($this->client);
     }
 
+    /**
+     * @return Factories\Api\Container
+     */
+    public function container()
+    {
+        return new Container($this->client);
+    }
 }
