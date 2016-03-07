@@ -60,7 +60,7 @@ class Container extends AbstractEntity
     protected $dataVolumes;
 
     /**
-     * Host container belongs to
+     * Account container belongs to
      *
      * @var string
      */
