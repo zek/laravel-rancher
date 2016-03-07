@@ -11,5 +11,14 @@ namespace Benmag\Rancher\Contracts\Api;
  */
 interface Project {
 
+    /**
+     * {@inheritdoc}
+     */
+    public function all();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get($id);
 
 }

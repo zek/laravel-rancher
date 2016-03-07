@@ -1,8 +1,10 @@
 <?php
 
 namespace Benmag\Rancher;
+
 use Benmag\Rancher\Factories\Api\Container;
 use Benmag\Rancher\Factories\Api\Host;
+use Benmag\Rancher\Factories\Api\Project;
 
 /**
  * Rancher API wrapper for Laravel
@@ -34,4 +36,13 @@ class Rancher {
     {
         return new Container($this->client);
     }
+
+    /**
+     * @return Project
+     */
+    public function project()
+    {
+        return new Project($this->client);
+    }
+
 }
