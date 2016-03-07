@@ -11,54 +11,23 @@ use Benmag\Rancher\Factories\Entity\Host as HostEntity;
  * @package  Rancher
  * @author   @benmagg
  */
-class Host implements \Benmag\Rancher\Contracts\Api\Host
+class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
 {
 
     /**
-     * Host constructor. Inject Client.
+     * The class of the entity we are working with
      *
-     * @param Client $client
+     * @var Container
      */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
+    protected $class = HostEntity::class;
 
     /**
-     * {@inheritdoc}
+     * The Rancher API endpoint of the resource type.
+     *
+     * @var string
      */
-    public function all()
-    {
+    protected $endpoint = "hosts";
 
-        // Get all hosts from Rancher API
-        $hosts = $this->client->get("hosts");
-
-        // Decode the json response
-        $hosts = json_decode($hosts);
-
-        // Convert to HostEntity
-        return array_map(function ($host) {
-            return new HostEntity($host);
-        }, $hosts->data);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function get($id)
-    {
-
-        // Get the host
-        $host = $this->client->get("hosts/$id");
-
-        // Parse json response
-        $host = json_decode($host);
-
-        // Instantiate new HostEntity with response
-        return new HostEntity($host);
-
-    }
 
     /**
      * {@inheritdoc}
@@ -67,7 +36,7 @@ class Host implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "activate" host request
-        $host = $this->client->post("hosts/$id", [
+        $host = $this->client->post($this->endpoint . "/" . $id, [
             'action' => 'activate'
         ]);
 
