@@ -22,6 +22,23 @@ interface Host {
      */
     public function get($id);
 
+    /**
+     * {@inheritdoc}
+     */
+    public function create($host);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update($id, $host);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete($id);
+
+
+
 
     /**
      * Activate a host
@@ -38,5 +55,21 @@ interface Host {
      * @return \Benmag\Rancher\Factories\Entity\Host
      */
     public function deactivate($id);
+
+    /**
+     * Remove a host
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Host
+     */
+    public function remove($id);
+
+    /**
+     * Restore a host
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Host
+     */
+    public function restore($id);
 
 }

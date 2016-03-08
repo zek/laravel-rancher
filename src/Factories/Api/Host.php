@@ -66,4 +66,42 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function remove($id)
+    {
+
+        // Send "remove" host request
+        $host = $this->client->post("hosts/$id", [
+            'action' => 'remove'
+        ]);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create HostEntity from response
+        return new HostEntity($host);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function restore($id)
+    {
+
+        // Send "remove" host request
+        $host = $this->client->post("hosts/$id", [
+            'action' => 'restore'
+        ]);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create HostEntity from response
+        return new HostEntity($host);
+
+    }
+
 }
