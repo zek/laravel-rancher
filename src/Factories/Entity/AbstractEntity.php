@@ -4,6 +4,22 @@ namespace Benmag\Rancher\Factories\Entity;
 
 abstract class AbstractEntity
 {
+
+    /**
+     * List of available links for this entity
+     *
+     * @var array
+     */
+    protected $links;
+
+    /**
+     * List of available actions on this entity
+     *
+     * @var array
+     */
+    protected $actions;
+
+    /**
     /**
      * @param \stdClass|array|null $parameters
      */
