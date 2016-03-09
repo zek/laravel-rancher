@@ -25,11 +25,6 @@ interface Host {
     /**
      * {@inheritdoc}
      */
-    public function create($host);
-
-    /**
-     * {@inheritdoc}
-     */
     public function update($id, $host);
 
     /**
