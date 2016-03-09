@@ -74,11 +74,70 @@ Rancher::host()->all();
 Rancher::host()->get("1h1");
 ```
 
+#### Activate a Host by ID
+```php
+Rancher::host()->activate("1h1");
+```
+
+#### Deactivate a Host by ID
+```php
+Rancher::host()->deactivate("1h1");
+```
+
+#### Restore a Host by ID
+```php
+Rancher::host()->restore("1h1");
+```
+
+#### Remove a Host by ID
+```php
+Rancher::host()->remove("1h1");
+```
 
 ### Container
 #### Retrieving all Containers 
 ```php 
 Rancher::container()->all();
+```
+
+#### Retrieve Container by ID
+```php 
+Rancher::container()->get("1i140");
+```
+
+#### Create a Container 
+```php
+use Benmag\Rancher\Factories\Entity\Container;
+
+$newContainer = new Container([
+    'name' => 'Hello World',
+    'description' => 'New container created via Laravel Rancher',
+    'imageUuid' => "docker:ubuntu:14.04.3",
+]);
+
+Rancher::container()->create($newContainer);
+```
+
+### Environment
+
+### Project
+
+### Service
+
+
+### Handling Exceptions
+The Rancher API will return errors as required. I am still looking for a nicer way to handle these exceptions... For the time being, simply wrap your call in a try/catch block.
+
+```php
+try {
+    
+    Rancher::host()->deactivate("1h1");
+    
+} catch(ClientException $e) {
+    $response = $e->getResponse();
+    $responseBodyAsString = $response->getBody()->getContents();
+    echo $responseBodyAsString;
+}
 ```
 
 
