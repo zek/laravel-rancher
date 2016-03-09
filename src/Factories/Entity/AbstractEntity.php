@@ -20,7 +20,7 @@ abstract class AbstractEntity
     protected $actions;
 
     /**
-    /**
+     * /**
      * @param \stdClass|array|null $parameters
      */
     public function __construct($parameters = null)
@@ -63,4 +63,20 @@ abstract class AbstractEntity
 
         return lcfirst(preg_replace_callback('/(^|_)([a-z])/', $callback, $str));
     }
+
+
+    /**
+     * Convert the entity to an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = array();
+        foreach ($this as $key => $value) {
+            $result[$key] = $value;
+        }
+        return $result;
+    }
+
 }

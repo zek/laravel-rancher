@@ -73,4 +73,25 @@ class Container extends AbstractEntity
      */
     protected $state;
 
+    /**
+     * Whether or not the services in the stack should be started after creation
+     *
+     * @var bool
+     */
+    protected $startOnCreate = true;
+
+    /**
+     * Keep STDIN open even if not attached. `-i` in a `docker run` command
+     *
+     * @var bool
+     */
+    protected $stdinOpen = true;
+
+    /**
+     * Allocate a pseudo-tty. `-t` in a `docker run` command
+     *
+     * @var bool
+     */
+    protected $tty = true;
+
 }
