@@ -25,4 +25,84 @@ interface Environment {
      */
     public function get($id);
 
+
+    /**
+     * Send create request to API
+     *
+     * @param \Benmag\Rancher\Factories\Entity\Environment $environment
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function create(\Benmag\Rancher\Factories\Entity\Environment $environment);
+
+    public function update($id, \Benmag\Rancher\Factories\Entity\Environment $environment);
+
+    public function delete($id);
+
+
+    /**
+     * Remove the environment
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function remove($id);
+
+    /**
+     * Activate services within an Environment (aka Stack)
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function activateServices($id);
+
+    /**
+     * Deactivate services within an Environment
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function deactivateServices($id);
+
+    /**
+     * Trigger an Environment upgrade
+     *
+     * @param $id
+     * @param \Benmag\Rancher\Factories\Entity\Environment $environment
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function upgrade($id, \Benmag\Rancher\Factories\Entity\Environment $environment);
+
+    /**
+     * Finish the Environment upgrade
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function finishUpgrade($id);
+
+    /**
+     * Cancel the Environment upgrade
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function cancelUpgrade($id);
+
+    /**
+     * Rollback an upgrade that hasn't been
+     * marked as finished
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function rollback($id);
+
+    /**
+     * Cancel the rollback command
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Environment
+     */
+    public function cancelRollback($id);
+
 }

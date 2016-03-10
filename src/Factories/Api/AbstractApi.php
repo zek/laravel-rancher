@@ -66,7 +66,6 @@ abstract class AbstractApi
 
     }
 
-
     /**
      * Get a specified Entity from the API resource.
      *
@@ -86,5 +85,30 @@ abstract class AbstractApi
         return new $this->class($object);
 
     }
+
+
+
+
+
+
+    /**
+     * Send create request to API
+     *
+     * @param $id
+     * @param $entity
+     */
+//    public function update($id, $entity)
+//    {
+//    }
+
+    /**
+     * Send create request to API
+     *
+     * @param $id
+     */
+//    public function delete($id)
+//    {
+//    }
+
 
 }

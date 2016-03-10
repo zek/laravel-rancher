@@ -52,6 +52,18 @@ class Environment extends AbstractEntity
      */
     protected $rancherCompose;
 
+    /**
+     * Environment variables
+     *
+     * @var map[string]
+     */
+    protected $environment;
 
+    /**
+     * Whether or not the services in the stack should be started after creation
+     *
+     * @var bool
+     */
+    protected $startOnCreate = true;
 
 }

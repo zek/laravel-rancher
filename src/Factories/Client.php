@@ -68,4 +68,43 @@ class Client implements \Benmag\Rancher\Contracts\Client {
         }
     }
 
+
+    /**
+     * @param $endPoint
+     * @param array $params
+     * @return string
+     * @throws \Exception
+     */
+    public function put($endPoint, array $params = [])
+    {
+        $response = $this->client->put($endPoint, [ 'query' => $params ]);
+        switch ($response->getHeader('content-type'))
+        {
+            case "application/json":
+                return $response->json();
+                break;
+            default:
+                return $response->getBody()->getContents();
+        }
+    }
+
+    /**
+     * @param $endPoint
+     * @param array $params
+     * @return string
+     * @throws \Exception
+     */
+    public function delete($endPoint, array $params = [])
+    {
+        $response = $this->client->delete($endPoint, [ 'query' => $params ]);
+        switch ($response->getHeader('content-type'))
+        {
+            case "application/json":
+                return $response->json();
+                break;
+            default:
+                return $response->getBody()->getContents();
+        }
+    }
 }
+

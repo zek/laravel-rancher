@@ -120,6 +120,46 @@ Rancher::container()->create($newContainer);
 
 ### Environment
 
+#### Create an Environment 
+```php
+use Benmag\Rancher\Factories\Entity\Environment;
+
+$newEnvironment = new Environment([
+    'name' => "yseees",
+    'description' => 'An example stack',
+    'dockerCompose' => "odoo:\n  image: odoo\n  ports:\n    - \"8069:8069\"\n  links:\n    - db\ndb:\n  image: postgres\n  environment:\n    - POSTGRES_USER=odoo\n    - POSTGRES_PASSWORD=odoo\n",
+    'rancherCompose' => ".catalog:\n  name: \"Odoo\"\n  version: \"0.1-educaas\"\n  description: \"ERP management powered by Odoo\"\n  uuid: odoo-0\n  questions:\n\nodoo:\n",
+    'externalId' => "catalog://community:odoo:0",
+    'startOnCreate' => true
+]);
+
+Rancher::environment()->create($newEnvironment);
+```
+
+#### Update an Environment
+```php
+use Benmag\Rancher\Factories\Entity\Environment;
+
+$updatedEnvironment = new Environment([
+    'name' => "stack",
+    'description' => 'An updated stack/environment',
+]);
+
+Rancher::environment()->update("1e17", $updatedEnvironment);
+```
+
+#### Activate Services in an Environment
+```php
+Rancher::environment()->activateServices("1e17");
+```
+
+#### Deactivate Services in an Environment
+```php
+Rancher::environment()->deactivateServices("1e17");
+```
+
+
+
 ### Project
 
 ### Service

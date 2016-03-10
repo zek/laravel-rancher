@@ -28,4 +28,171 @@ class Environment extends AbstractApi implements \Benmag\Rancher\Contracts\Api\E
     protected $endpoint = "environments";
 
 
+    /**
+     * {@inheritdoc}
+     */
+    public function create(EnvironmentEntity $environment)
+    {
+
+        // Send "create" environment request
+        $environment = $this->client->post($this->endpoint, $environment->toArray());
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update($id, EnvironmentEntity $environment)
+    {
+
+        // Send "update" environment request
+        $environment = $this->client->put($this->endpoint."/".$id, $environment->toArray());
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete($id)
+    {
+
+        // Send "update" environment request
+        $environment = $this->client->delete($this->endpoint."/".$id);
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function remove($id)
+    {
+
+        // Send "update" environment request
+        $environment = $this->client->post($this->endpoint."/".$id, [
+            'action' => 'remove'
+        ]);
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function activateServices($id)
+    {
+
+        // Send "update" environment request
+        $environment = $this->client->post($this->endpoint."/".$id, [
+            'action' => 'activateservices'
+        ]);
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deactivateServices($id)
+    {
+
+        // Send "update" environment request
+        $environment = $this->client->post($this->endpoint."/".$id, [
+            'action' => 'deactivateservices'
+        ]);
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upgrade($id, \Benmag\Rancher\Factories\Entity\Environment $environment)
+    {
+
+        ///////////////////////
+        // Does this functionality actually exist yet within Rancher??
+        ///////////////////////
+
+        /*// Merge $environment with our action param
+        $data = array_merge(['action' => 'update'], $environment->toArray());
+
+        // Send "update" environment request
+        $environment = $this->client->post($this->endpoint."/".$id, $data);
+
+        // Parse response
+        $environment = json_decode($environment);
+
+        // Create ContainerEntity from response
+        return new EnvironmentEntity($environment);*/
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishUpgrade($id)
+    {
+        // Does this functionality actually exist yet within Rancher??
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function cancelUpgrade($id)
+    {
+        // Does this functionality actually exist yet within Rancher??
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rollback($id)
+    {
+        // Does this functionality actually exist yet within Rancher??
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function cancelRollback($id)
+    {
+        // Does this functionality actually exist yet within Rancher??
+    }
+
 }
