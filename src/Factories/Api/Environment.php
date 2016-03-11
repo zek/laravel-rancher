@@ -144,23 +144,7 @@ class Environment extends AbstractApi implements \Benmag\Rancher\Contracts\Api\E
      */
     public function upgrade($id, \Benmag\Rancher\Factories\Entity\Environment $environment)
     {
-
-        ///////////////////////
         // Does this functionality actually exist yet within Rancher??
-        ///////////////////////
-
-        /*// Merge $environment with our action param
-        $data = array_merge(['action' => 'update'], $environment->toArray());
-
-        // Send "update" environment request
-        $environment = $this->client->post($this->endpoint."/".$id, $data);
-
-        // Parse response
-        $environment = json_decode($environment);
-
-        // Create ContainerEntity from response
-        return new EnvironmentEntity($environment);*/
-
     }
 
     /**
