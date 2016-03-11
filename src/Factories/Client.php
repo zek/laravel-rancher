@@ -31,6 +31,14 @@ class Client implements \Benmag\Rancher\Contracts\Client {
     }
 
     /**
+     *
+     */
+    private function prepareData($params = [], $options = [])
+    {
+        return array_merge(['query' => $params], $options);
+    }
+
+    /**
      * @param $endPoint
      * @param array $params
      * @return mixed
@@ -52,12 +60,13 @@ class Client implements \Benmag\Rancher\Contracts\Client {
     /**
      * @param $endPoint
      * @param array $params
+     * @param array $options
      * @return string
      * @throws \Exception
      */
-    public function post($endPoint, array $params = [])
+    public function post($endPoint, array $params = [], array $options = [])
     {
-        $response = $this->client->post($endPoint, [ 'query' => $params ]);
+        $response = $this->client->post($endPoint, $this->prepareData($params, $options));
         switch ($response->getHeader('content-type'))
         {
             case "application/json":
@@ -91,12 +100,13 @@ class Client implements \Benmag\Rancher\Contracts\Client {
     /**
      * @param $endPoint
      * @param array $params
+     * @param array $options
      * @return string
      * @throws \Exception
      */
-    public function delete($endPoint, array $params = [])
+    public function delete($endPoint, array $params = [], array $options = [])
     {
-        $response = $this->client->delete($endPoint, [ 'query' => $params ]);
+        $response = $this->client->delete($endPoint, $this->prepareData($params, $options));
         switch ($response->getHeader('content-type'))
         {
             case "application/json":
@@ -106,5 +116,6 @@ class Client implements \Benmag\Rancher\Contracts\Client {
                 return $response->getBody()->getContents();
         }
     }
+
 }
 
