@@ -25,4 +25,25 @@ interface Service {
      */
     public function get($id);
 
+
+    /**
+     * Send create request to API
+     *
+     * @param \Benmag\Rancher\Factories\Entity\Service $service
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function create(\Benmag\Rancher\Factories\Entity\Service $service);
+
+
+    /**
+     * Send update request to API
+     *
+     * @param $id
+     * @param array $data
+     * @return \Benmag\Rancher\Factories\Entity\Container
+     */
+    public function update($id, array $data);
+
+
+
 }

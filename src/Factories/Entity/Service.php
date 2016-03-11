@@ -38,12 +38,19 @@ class Service extends AbstractEntity
     protected $environmentId;
 
     /**
+     * Image container is using
+     *
+     * @var string
+     */
+    protected $imageUuid;
+
+    /**
      * The number of containers to deploy
      * as part of a service
      *
      * @var integer
      */
-    protected $scale;
+    protected $scale = 1;
 
     /**
      * Current state of container

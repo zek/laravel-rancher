@@ -35,7 +35,8 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     private function prepareData($params = [], $options = [])
     {
-        return array_merge(['query' => $params], $options);
+        // TODO: Check if we can just send all data as json
+        return array_merge([($options['content_type'] ? $options['content_type'] : "query") => $params], $options);
     }
 
     /**
