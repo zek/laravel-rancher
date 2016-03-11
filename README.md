@@ -107,6 +107,7 @@ Rancher::container()->get("1i140");
 
 #### Create a Container 
 ```php
+use Rancher;
 use Benmag\Rancher\Factories\Entity\Container;
 
 $newContainer = new Container([
@@ -122,6 +123,7 @@ Rancher::container()->create($newContainer);
 
 #### Create an Environment 
 ```php
+use Rancher;
 use Benmag\Rancher\Factories\Entity\Environment;
 
 $newEnvironment = new Environment([
@@ -138,6 +140,7 @@ Rancher::environment()->create($newEnvironment);
 
 #### Update an Environment
 ```php
+use Rancher;
 use Benmag\Rancher\Factories\Entity\Environment;
 
 $updatedEnvironment = new Environment([
@@ -159,8 +162,19 @@ Rancher::environment()->deactivateServices("1e17");
 ```
 
 
-
 ### Project
+#### Create a new Project
+```php
+use Rancher;
+use Benmag\Rancher\Factories\Entity\Project;
+
+$project = new Project([
+    'name' => 'Hello World',
+]);
+
+Rancher::project()->create($project);
+```
+
 
 ### Service
 
