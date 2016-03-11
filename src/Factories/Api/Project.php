@@ -26,5 +26,106 @@ class Project extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Proje
      * @var string
      */
     protected $endpoint = "projects";
-    
+
+    /**
+     * {@inheritdoc}
+     */
+    public function create(ProjectEntity $project)
+    {
+
+        // Data
+        $data = $project->toArray();
+
+        // Send "create" project request
+        $project = $this->client->post("project", $data, ['auth' => null]);
+
+        // Parse response
+        $project = json_decode($project);
+
+        // Create ContainerEntity from response
+        return new ProjectEntity($project);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete($id)
+    {
+
+        // Send "stop" container request
+        $project = $this->client->delete($this->endpoint."/".$id, [], ['auth' => null]);
+
+        // Parse response
+        $project = json_decode($project);
+
+        // Create ContainerEntity from response
+        return new ProjectEntity($project);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function remove($id)
+    {
+
+        // Send "remove" container request
+        $project = $this->client->post($this->endpoint."/".$id, ['action' => 'remove'], ['auth' => null]);
+
+
+        // Parse response
+        $project = json_decode($project);
+
+        // Create ContainerEntity from response
+        return new ProjectEntity($project);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function activate($id)
+    {
+
+        // Send "stop" container request
+        $project = $this->client->post($this->endpoint."/".$id, ['action' => 'activate'], ['auth' => null]);
+
+        // Parse response
+        $project = json_decode($project);
+
+        // Create ContainerEntity from response
+        return new ProjectEntity($project);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deactivate($id)
+    {
+
+        // Send "stop" container request
+        $project = $this->client->post($this->endpoint."/".$id, ['action' => 'deactivate'], ['auth' => null]);
+
+        // Parse response
+        $project = json_decode($project);
+
+        // Create ContainerEntity from response
+        return new ProjectEntity($project);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMembers($id, array $members)
+    {
+        // TODO
+        // I can't figure this out just yet. I think it has something to do
+        // with different access permissions for different environments/entities.
+        //
+        // This is confusing as hell because for some endpoints you need to unauthorise
+        // and with this you might need to potentially authorise with a specific key...
+    }
 }

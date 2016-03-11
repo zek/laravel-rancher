@@ -21,4 +21,48 @@ interface Project {
      */
     public function get($id);
 
+
+    /**
+     * Send create request to API
+     *
+     * @param \Benmag\Rancher\Factories\Entity\Project $project
+     * @return \Benmag\Rancher\Factories\Entity\Project
+     */
+    public function create(\Benmag\Rancher\Factories\Entity\Project $project);
+
+    /**
+     * Send delete request to API
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Project
+     */
+    public function delete($id);
+
+
+
+    /**
+     * Send activate request to API
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Project
+     */
+    public function activate($id);
+
+    /**
+     * Send deactivate request to API
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Project
+     */
+    public function deactivate($id);
+
+    /**
+     * Set the members of a Project
+     *
+     * @param $id
+     * @param array[Identity] $members
+     * @return \Benmag\Rancher\Factories\Entity\Project
+     */
+    public function setMembers($id, array $members);
+
 }
