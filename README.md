@@ -111,7 +111,7 @@ use Rancher;
 use Benmag\Rancher\Factories\Entity\Container;
 
 $newContainer = new Container([
-    'name' => 'Hello World',
+    'name' => 'HelloWorld',
     'description' => 'New container created via Laravel Rancher',
     'imageUuid' => "docker:ubuntu:14.04.3",
 ]);
@@ -177,6 +177,42 @@ Rancher::project()->create($project);
 
 
 ### Service
+#### Create a Service
+```php
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\Service;
+
+$newService = new Service([
+    'name' => 'newService',
+    'environmentId' => '1e19',
+    'launchConfig' => [
+        'stdinOpen' => true,
+        'imageUuid' => 'docker:ubuntu:14.04.3'
+    ],
+]);
+
+Rancher::service()->create($newService);
+```
+
+#### Update a Service
+> TODO: Check to see if this actually needs the metadata. Might not needed it
+ Might have been accidently solved by the `json`/`query` thing xD
+
+```php
+use Rancher;
+use Benmag\Rancher\Factories\Entity\Service;
+
+$data = [
+    "description" => "I was updated",
+    "metadata" => [
+        "io.rancher.service.hash" => "d207d194d16104535c1df27c1c9ac5918b7cfa26",
+    ],
+    "name" => "db",
+    "scale" => 1
+];
+
+$service = Rancher::service()->update("1s23", $data);
+```
 
 
 ### Handling Exceptions

@@ -73,7 +73,7 @@ interface Container {
      * Send purge container request to API
      *
      * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Container
+     * @return mixed
      */
     public function purge($id);
 
