@@ -195,9 +195,6 @@ Rancher::service()->create($newService);
 ```
 
 #### Update a Service
-> TODO: Check to see if this actually needs the metadata. Might not needed it
- Might have been accidently solved by the `json`/`query` thing xD
-
 ```php
 use Rancher;
 use Benmag\Rancher\Factories\Entity\Service;
