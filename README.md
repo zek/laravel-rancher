@@ -299,6 +299,54 @@ try {
 }
 ```
 
+## Rancher API Endpoint Coverage
+The Rancher API is extensive. I've attempted to cover all of the key endpoints but there are a few endpoints that are currently unimplemented.
+- Host `[4/8]`
+  - update
+  - delete
+  - dockersocket
+  - purge 
+- Container `[7/18]`
+  - update 
+  - delete
+  - allocate
+  - console
+  - deallocate
+  - execute 
+  - logs 
+  - migrate
+  - setlabels
+  - updatehealthy
+  - updateunhealthy
+- Environment `[6/14]`
+  - addoutputs
+  - cancelrollback
+  - cancelupgrade 
+  - error
+  - exportconfig
+  - finishupgrade
+  - rollback
+  - upgrade
+- Project `[5/8]`
+  - purge 
+  - restore
+  - setmembers
+- Service `[13/14]`
+  - remove
+- Account `[0]`
+- ApiKey `[0]`
+- Certificate `[0]`
+- DnsService `[0]`
+- externalService `[0]`
+- Identity `[0]`
+- LoadBalancerService `[0]`
+- Machine `[0]`
+- Mount `[0]`
+- ProjectMember `[0]`
+- Registry `[0]`
+- RegistryCredential `[0]` 
+- StoragePool `[0]`
+- Volume `[0]`
 
 ## License
 
