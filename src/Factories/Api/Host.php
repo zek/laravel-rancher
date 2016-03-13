@@ -28,6 +28,24 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     protected $endpoint = "hosts";
 
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update($id, HostEntity $host)
+    {
+
+        // Send "update" environment request
+        $host = $this->client->put($this->endpoint."/".$id, $host->toArray());
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create ContainerEntity from response
+        return new HostEntity($host);
+
+    }
+
     /**
      * {@inheritdoc}
      */

@@ -301,8 +301,7 @@ try {
 
 ## Rancher API Endpoint Coverage
 The Rancher API is extensive. I've attempted to cover all of the key endpoints but there are a few endpoints that are currently unimplemented.
-- Host `[4/8]`
-  - update
+- Host `[5/8]`
   - delete
   - dockersocket
   - purge 

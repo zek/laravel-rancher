@@ -23,14 +23,13 @@ interface Host {
     public function get($id);
 
     /**
-     * {@inheritdoc}
+     * Send update host request to API
+     *
+     * @param $id
+     * @param \Benmag\Rancher\Factories\Entity\Host $host
+     * @return \Benmag\Rancher\Factories\Entity\Host
      */
-    public function update($id, $host);
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete($id);
+    public function update($id, \Benmag\Rancher\Factories\Entity\Host $host);
 
 
 
