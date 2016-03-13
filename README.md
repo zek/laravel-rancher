@@ -248,7 +248,17 @@ Rancher::service()->removeServiceLink("1s24", $remove);
 ```php
 use Rancher;
 
-$serviceUpgrade = [];
+$serviceUpgrade = [
+    'inServiceStrategy' => [
+        'batchSize' => 1,
+        'intervalMillis' => 2000,
+        'startFirst' => false,
+        'launchConfig' => [
+            'imageUuid' => 'docker:postgres',
+            'startOnCreate' => true,
+        ]
+    ]
+];
 
 Rancher::service()->upgrade("1s23", $serviceUpgrade);
 ```
