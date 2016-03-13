@@ -202,16 +202,44 @@ Rancher::service()->create($newService);
 use Rancher;
 use Benmag\Rancher\Factories\Entity\Service;
 
-$data = [
+$updatedService = new Service([
     "description" => "I was updated",
-    "metadata" => [
-        "io.rancher.service.hash" => "d207d194d16104535c1df27c1c9ac5918b7cfa26",
-    ],
     "name" => "db",
     "scale" => 1
+]);
+
+Rancher::service()->update("1s23", $updatedService);
+```
+
+
+#### Add a Service Link
+You may also add a single service link to the service. You can use the `name` value to specify a link alias.
+```php
+$serviceLink = ['name' => 'redis', 'serviceId' => '1s25'];
+
+Rancher::service()->addServiceLink("1s24", $serviceLink);
+```
+
+#### Set Service Links
+The `setServiceLinks` method will overwrite all of the links for that service.  
+```php
+use Rancher;
+
+$serviceLinks = [
+    ['name' => 'db', 'serviceId' => '1s23']
 ];
 
-$service = Rancher::service()->update("1s23", $data);
+Rancher::service()->setServiceLinks("1s24", $serviceLinks);
+```
+
+#### Remove a Service Link
+Individual service links can also be removed
+```php
+use Rancher;
+
+$remove = ['name' => 'db', 'serviceId' => '1s23'];
+
+Rancher::service()->removeServiceLink("1s24", $remove);
 ```
 
 

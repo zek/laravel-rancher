@@ -48,17 +48,17 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     /**
      * {@inheritdoc}
      */
-    public function update($id, array $data)
+    public function update($id, ServiceEntity $service)
     {
 
         // Send "update" environment request
-        $data = $this->client->put($this->endpoint."/".$id, $data);
+        $service = $this->client->put($this->endpoint."/".$id, $service->toArray());
 
         // Parse response
-        $data = json_decode($data);
+        $service = json_decode($service);
 
         // Create ContainerEntity from response
-        return new ServiceEntity($data);
+        return new ServiceEntity($service);
 
     }
 
@@ -123,14 +123,53 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     /**
      * {@inheritdoc}
      */
-    public function setServiceLink($id, array $data)
+    public function addServiceLink($id, array $serviceLink)
     {
 
-        // Add `action` param to data before sending
-        $data = array_merge(['action' => 'setservicelinks'], $data);
+        // Prepare data for submission
+        $serviceLink = ['serviceLink' => $serviceLink];
+
+        // Send "addservicelink" request
+        $service = $this->client->post($this->endpoint . "/" . $id."?action=addservicelink", $serviceLink, ['content_type' => 'json']);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setServiceLinks($id, array $serviceLinks)
+    {
+
+        // Prepare data for submission
+        $serviceLinks = ['serviceLinks' => $serviceLinks];
 
         // Send "setservicelinks" request
-        $service = $this->client->post($this->endpoint . "/" . $id, $data, ['debug' => true]);
+        $service = $this->client->post($this->endpoint . "/" . $id."?action=setservicelinks", $serviceLinks, ['content_type' => 'json']);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeServiceLink($id, array $serviceLink)
+    {
+
+        // Prepare data for submission
+        $serviceLink = ['serviceLink' => $serviceLink];
+
+        // Send "removeservicelink" request
+        $service = $this->client->post($this->endpoint . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
