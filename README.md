@@ -215,6 +215,8 @@ Rancher::service()->update("1s23", $updatedService);
 #### Add a Service Link
 You may also add a single service link to the service. You can use the `name` value to specify a link alias.
 ```php
+use Rancher;
+
 $serviceLink = ['name' => 'redis', 'serviceId' => '1s25'];
 
 Rancher::service()->addServiceLink("1s24", $serviceLink);
@@ -240,6 +242,35 @@ use Rancher;
 $remove = ['name' => 'db', 'serviceId' => '1s23'];
 
 Rancher::service()->removeServiceLink("1s24", $remove);
+```
+
+#### Upgrade a Service
+```php
+use Rancher;
+
+$serviceUpgrade = [];
+
+Rancher::service()->upgrade("1s23", $serviceUpgrade);
+```
+
+#### Finish a Service Upgrade
+```php
+Rancher::service()->finishUpgrade("1s23");
+```
+
+#### Cancel a Service Upgrade
+```php
+Rancher::service()->cancelUpgrade("1s23");
+```
+
+#### Rollback an Upgrade 
+```php
+Rancher::service()->rollback("1s23");
+```
+
+#### Cancel Rollback
+```php
+Rancher::service()->cancelRollback("1s23");
 ```
 
 

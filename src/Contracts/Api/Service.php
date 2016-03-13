@@ -91,4 +91,47 @@ interface Service {
      */
     public function removeServiceLink($id, array $serviceLink);
 
+
+
+    /**
+     * Trigger a Service upgrade
+     *
+     * @param $id
+     * @param array $serviceUpgrade
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function upgrade($id, array $serviceUpgrade);
+
+    /**
+     * Finish the Service upgrade
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function finishUpgrade($id);
+
+    /**
+     * Cancel the Service upgrade
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function cancelUpgrade($id);
+
+    /**
+     * Rollback an upgrade that hasn't been
+     * marked as finished
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function rollback($id);
+
+    /**
+     * Cancel the rollback command
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function cancelRollback($id);
 }

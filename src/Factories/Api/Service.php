@@ -179,4 +179,100 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
 
     }
 
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upgrade($id, array $serviceUpgrade)
+    {
+
+        // Send upgrade request
+        $service = $this->client->post($this->endpoint . "/" . $id."?action=upgrade", $serviceUpgrade, ['content_type' => 'json']);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishUpgrade($id)
+    {
+
+        // Send finish upgrade request
+        $service = $this->client->post($this->endpoint . "/" . $id, [
+            'action' => 'finishupgrade'
+        ]);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function cancelUpgrade($id)
+    {
+
+        // Send cancel upgrade request
+        $service = $this->client->post($this->endpoint . "/" . $id, [
+            'action' => 'cancelupgrade'
+        ]);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rollback($id)
+    {
+
+        // Send cancel upgrade request
+        $service = $this->client->post($this->endpoint . "/" . $id, [
+            'action' => 'rollback'
+        ]);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function cancelRollback($id)
+    {
+
+        // Send cancel upgrade request
+        $service = $this->client->post($this->endpoint . "/" . $id, [
+            'action' => 'cancelrollback'
+        ]);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
+
 }
