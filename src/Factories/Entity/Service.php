@@ -10,24 +10,24 @@ class Service extends AbstractEntity
      *
      * @var string
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * @var string
      */
-    protected $description;
+    public $description;
 
     /**
      * Account environment belongs to
      *
      * @var string
      */
-    protected $accountId;
+    public $accountId;
 
     /**
      * The identifier of the Environment
@@ -35,14 +35,14 @@ class Service extends AbstractEntity
      *
      * @var string
      */
-    protected $environmentId;
+    public $environmentId;
 
     /**
      * Image container is using
      *
      * @var string
      */
-    protected $imageUuid;
+    public $imageUuid;
 
     /**
      * The number of containers to deploy
@@ -50,20 +50,20 @@ class Service extends AbstractEntity
      *
      * @var integer
      */
-    protected $scale = 1;
+    public $scale = 1;
 
     /**
      * Current state of container
      *
      * @var string
      */
-    protected $state;
+    public $state;
 
     /**
      * The Docker run configuration of a container
      *
      * @var object
      */
-    protected $launchConfig;
+    public $launchConfig;
 
 }

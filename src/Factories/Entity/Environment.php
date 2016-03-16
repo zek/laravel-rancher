@@ -10,31 +10,31 @@ class Environment extends AbstractEntity
      *
      * @var string
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * @var string
      */
-    protected $description;
+    public $description;
 
     /**
      * Account environment belongs to
      *
      * @var string
      */
-    protected $accountId;
+    public $accountId;
 
     /**
      * Current state of container
      *
      * @var string
      */
-    protected $state;
+    public $state;
 
     /**
      * The docker-compose.yml file
@@ -42,7 +42,7 @@ class Environment extends AbstractEntity
      *
      * @var string
      */
-    protected $dockerCompose;
+    public $dockerCompose;
 
     /**
      * The rancher-compose.yml file
@@ -50,20 +50,20 @@ class Environment extends AbstractEntity
      *
      * @var string
      */
-    protected $rancherCompose;
+    public $rancherCompose;
 
     /**
      * Environment variables
      *
      * @var map[string]
      */
-    protected $environment;
+    public $environment;
 
     /**
      * Whether or not the services in the stack should be started after creation
      *
      * @var bool
      */
-    protected $startOnCreate = true;
+    public $startOnCreate = true;
 
 }

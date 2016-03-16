@@ -10,28 +10,28 @@ class Project extends AbstractEntity
      *
      * @var string
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * @var string
      */
-    protected $description;
+    public $description;
 
     /**
      * @var string
      */
-    protected $state;
+    public $state;
 
     /**
      * The given hostname for the host.
      *
      * @var array[projectMember]
      */
-    protected $members;
+    public $members;
 
 }

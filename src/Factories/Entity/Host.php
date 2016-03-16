@@ -10,40 +10,40 @@ class Host extends AbstractEntity
      *
      * @var string
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * @var string
      */
-    protected $description;
+    public $description;
 
     /**
      * The given hostname for the host.
      *
      * @var string
      */
-    protected $hostname;
+    public $hostname;
 
     /**
      * Publicly available endpoints for the host
      *
      * @var array
      */
-    protected $publicEndpoints;
+    public $publicEndpoints;
 
     /**
      * @var string
      */
-    protected $state;
+    public $state;
 
     /**
      * @var string
      */
-    protected $agentState;
+    public $agentState;
 
 }
