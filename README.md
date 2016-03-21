@@ -329,13 +329,27 @@ The Rancher API is extensive. I've attempted to cover all of the key endpoints b
   - setmembers
 - Service `[13/14]`
   - remove
+- LoadBalancerService `[0/13]`
+  - create 
+  - update
+  - delete
+  - activate
+  - addservicelink
+  - cancelrollback
+  - cancelupgrade
+  - deactivate 
+  - finishupgrade
+  - remove
+  - removeservicelink
+  - rollback
+  - setservicelinks
+  - upgrade
 - Account `[0]`
 - ApiKey `[0]`
 - Certificate `[0]`
 - DnsService `[0]`
 - externalService `[0]`
 - Identity `[0]`
-- LoadBalancerService `[0]`
 - Machine `[0]`
 - Mount `[0]`
 - ProjectMember `[0]`

@@ -20,7 +20,7 @@ abstract class AbstractEntity
     protected $actions;
 
     /**
-     * /**
+     *
      * @param \stdClass|array|null $parameters
      */
     public function __construct($parameters = null)

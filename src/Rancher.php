@@ -63,4 +63,13 @@ class Rancher {
         return new Service($this->client);
     }
 
+    /**
+     * @return Factories\Api\LoadBalancerService
+     */
+    public function loadBalancerService()
+    {
+        return new LoadBalancerService($this->client);
+    }
+
+
 }
