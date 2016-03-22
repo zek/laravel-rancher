@@ -7,6 +7,7 @@ use Benmag\Rancher\Factories\Api\Environment;
 use Benmag\Rancher\Factories\Api\Host;
 use Benmag\Rancher\Factories\Api\Project;
 use Benmag\Rancher\Factories\Api\Service;
+use Benmag\Rancher\Factories\Api\LoadBalancerService;
 
 /**
  * Rancher API wrapper for Laravel

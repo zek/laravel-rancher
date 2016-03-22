@@ -39,7 +39,9 @@ RANCHER_SECRET_KEY=xxxxxxx
 >You may also publish the config file to `config/rancher.php` for editing:
 `php artisan vendor:publish --provider="Benmag\Rancher\RancherServiceProvider"`
  
-
+### Notes
+Make sure you have authentication enabled. Without this, you might experience some weird behaviour. 
+I still need to look into changing Environments/Projects in a slightly more coordinated way but you should just be able to instantiate a new client instance.
 
 ## Usage
 Laravel Rancher is incredibly intuitive to use. 
@@ -280,6 +282,70 @@ Rancher::service()->rollback("1s23");
 Rancher::service()->cancelRollback("1s23");
 ```
 
+### Load Balancer Service
+#### Create a Load Balancer
+```php
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\LoadBalancerService;
+
+$newLb = new LoadBalancerService([
+    'name' => 'lb',
+    'environmentId' => '1e4',
+    'projectId' => '1a5',
+    'launchConfig' => [
+        'ports' => ["80:80"],
+        'startOnCreate' => true,
+    ],
+]);
+
+Rancher::loadBalancerService()->create($newLb);
+```
+
+#### Update a Load Balancer
+```php
+use Rancher;
+use Benmag\Rancher\Factories\Entity\LoadBalancerService;
+
+$updatedLb = new LoadBalancerService([
+    "name" => "updated-lb",
+]);
+
+Rancher::loadBalancerService()->update("1s26", $updatedLb);
+```
+
+
+#### Add a Service Link to Load Balancer
+You may also add a single service link to the service. You can use the `name` value to specify a link alias.
+```php
+use Rancher;
+
+$serviceLink = ['serviceId' => '1s10'];
+
+Rancher::loadBalancerService()->addServiceLink("1s27", $serviceLink);
+```
+
+#### Set Service Links for Load Balancer
+The `setServiceLinks` method will overwrite all of the links for that load balancer.  
+```php
+use Rancher;
+
+$serviceLinks = [
+    ['serviceId' => '1s23']
+];
+
+Rancher::loadBalancerService()->setServiceLinks("1s24", $serviceLinks);
+```
+
+#### Remove a Service Link from Load Balancer
+Individual service links can also be removed
+```php
+use Rancher;
+
+$remove = ['serviceId' => '1s23'];
+
+Rancher::loadBalancerService()->removeServiceLink("1s24", $remove);
+```
+
 
 ### Handling Exceptions
 The Rancher API will return errors as required. I am still looking for a nicer way to handle these exceptions... For the time being, simply wrap your call in a try/catch block.
@@ -329,20 +395,12 @@ The Rancher API is extensive. I've attempted to cover all of the key endpoints b
   - setmembers
 - Service `[13/14]`
   - remove
-- LoadBalancerService `[0/13]`
-  - create 
-  - update
-  - delete
-  - activate
-  - addservicelink
+- LoadBalancerService `[7/13]`
   - cancelrollback
   - cancelupgrade
-  - deactivate 
   - finishupgrade
   - remove
-  - removeservicelink
   - rollback
-  - setservicelinks
   - upgrade
 - Account `[0]`
 - ApiKey `[0]`

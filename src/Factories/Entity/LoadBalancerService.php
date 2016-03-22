@@ -25,6 +25,31 @@ class LoadBalancerService extends AbstractEntity
     /**
      * @var string
      */
-    public $state;
+    public $projectId;
+
+    /**
+     * @var string
+     */
+    public $environmentId;
+
+    /**
+     * @var string
+     */
+    public $scale = 1;
+
+    /**
+     * @var string
+     */
+    public $type = "loadBalancerService";
+
+    /**
+     * @var array
+     */
+    public $launchConfig = null;
+
+    /**
+     * @var array
+     */
+    public $loadBalancerConfig = null;
 
 }

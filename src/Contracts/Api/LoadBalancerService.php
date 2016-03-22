@@ -91,37 +91,4 @@ interface LoadBalancerService {
     public function removeServiceLink($id, array $serviceLink);
 
 
-    /**
-     * Finish the Service upgrade
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Service
-     */
-    public function finishUpgrade($id);
-
-    /**
-     * Cancel the Service upgrade
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Service
-     */
-    public function cancelUpgrade($id);
-
-    /**
-     * Rollback an upgrade that hasn't been
-     * marked as finished
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Service
-     */
-    public function rollback($id);
-
-    /**
-     * Cancel the rollback command
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Service
-     */
-    public function cancelRollback($id);
-
 }

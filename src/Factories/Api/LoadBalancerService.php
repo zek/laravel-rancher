@@ -33,11 +33,8 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     public function create(LoadBalancerServiceEntity $lb)
     {
 
-        // Data
-        $data = $lb->toArray();
-
         // Send "create" project request
-        $lb = $this->client->post($this->endpoint, $data, ['auth' => null]);
+        $lb = $this->client->post($this->endpoint, $lb->toArray(), ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -54,7 +51,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     {
 
         // Send "update" environment request
-        $lb = $this->client->put($this->endpoint."/".$id, $lb->toArray());
+        $lb = $this->client->put($this->endpoint."/".$id, $lb->toArray(), ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -171,99 +168,6 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
 
         // Send "removeservicelink" request
         $lb = $this->client->post($this->endpoint . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
-
-        // Parse response
-        $lb = json_decode($lb);
-
-        // Create HostEntity from response
-        return new LoadBalancerServiceEntity($lb);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function upgrade($id, array $serviceUpgrade)
-    {
-
-        // Send upgrade request
-        $lb = $this->client->post($this->endpoint . "/" . $id."?action=upgrade", $serviceUpgrade, ['content_type' => 'json']);
-
-        // Parse response
-        $lb = json_decode($lb);
-
-        // Create HostEntity from response
-        return new LoadBalancerServiceEntity($lb);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function finishUpgrade($id)
-    {
-
-        // Send finish upgrade request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
-            'action' => 'finishupgrade'
-        ]);
-
-        // Parse response
-        $lb = json_decode($lb);
-
-        // Create HostEntity from response
-        return new LoadBalancerServiceEntity($lb);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function cancelUpgrade($id)
-    {
-
-        // Send cancel upgrade request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
-            'action' => 'cancelupgrade'
-        ]);
-
-        // Parse response
-        $lb = json_decode($lb);
-
-        // Create HostEntity from response
-        return new LoadBalancerServiceEntity($lb);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rollback($id)
-    {
-
-        // Send cancel upgrade request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
-            'action' => 'rollback'
-        ]);
-
-        // Parse response
-        $lb = json_decode($lb);
-
-        // Create HostEntity from response
-        return new LoadBalancerServiceEntity($lb);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function cancelRollback($id)
-    {
-
-        // Send cancel upgrade request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
-            'action' => 'cancelrollback'
-        ]);
 
         // Parse response
         $lb = json_decode($lb);
