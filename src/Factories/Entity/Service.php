@@ -66,4 +66,11 @@ class Service extends AbstractEntity
      */
     public $launchConfig;
 
+    /**
+     * The fqdn of a service when the DNS service has started.
+     *
+     * @var string
+     */
+    public $fqdn;
+
 }
