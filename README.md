@@ -319,7 +319,12 @@ You may also add a single service link to the service. You can use the `name` va
 ```php
 use Rancher;
 
-$serviceLink = ['serviceId' => '1s10'];
+$serviceLink = [
+    'serviceId' => '1s10', 
+    'ports' => [
+        "hello.world.domain.com=80"
+    ]
+];
 
 Rancher::loadBalancerService()->addServiceLink("1s27", $serviceLink);
 ```
@@ -330,7 +335,12 @@ The `setServiceLinks` method will overwrite all of the links for that load balan
 use Rancher;
 
 $serviceLinks = [
-    ['serviceId' => '1s23']
+    [
+        'serviceId' => '1s23',
+        'ports' => [
+            "hello.world.example.com=80",
+        ]
+    ]
 ];
 
 Rancher::loadBalancerService()->setServiceLinks("1s24", $serviceLinks);
