@@ -25,6 +25,11 @@ interface Service {
      */
     public function get($id);
 
+    /**
+     * {@inheritdoc}
+     */
+    public function filter($params);
+
 
     /**
      * Send create request to API

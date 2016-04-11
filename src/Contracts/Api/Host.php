@@ -23,6 +23,12 @@ interface Host {
     public function get($id);
 
     /**
+     * {@inheritdoc}
+     */
+    public function filter($params);
+
+
+    /**
      * Send update host request to API
      *
      * @param $id

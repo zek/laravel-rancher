@@ -60,7 +60,7 @@ class HostController extends Controller
 {
     public function index()
     {
-        dd(Rancher::host()->all());
+        return response()->json(Rancher::host()->all());
     }
 }
 ```
@@ -347,7 +347,7 @@ Rancher::loadBalancerService()->setServiceLinks("1s24", $serviceLinks);
 ```
 
 #### Remove a Service Link from Load Balancer
-Individual service links can also be removed
+Individual service links can also be removed.
 ```php
 use Rancher;
 
@@ -356,6 +356,24 @@ $remove = ['serviceId' => '1s23'];
 Rancher::loadBalancerService()->removeServiceLink("1s24", $remove);
 ```
 
+### Filters
+Rancher lets you specify filters on API resources. The type of filter to apply is set via the key. Listed below is an example of all of the filter options.
+
+```php
+$params = [
+    'name' => 'Hello World', // name = "Hello World"
+    'name_ne' => 'Hello World', // name != "Hello World"
+    'name_notnull' => null, // name is not null
+    'description_null' => null, // description is null
+    'description_notlike' => 'Hello World', // description NOT LIKE '%Hello World%'
+    'description_like' => 'Hello World', // description LIKE '%Hello World%'
+    'name_prefix' => 'Hello', // name LIKE 'Hello%'
+];
+
+Rancher::environment()->filter($params);
+
+```
+> Remember: to change the field you filter on, change the key e.g. `['state' => 'active']` or `['description_notnull' => null]`
 
 ### Handling Exceptions
 The Rancher API will return errors as required. I am still looking for a nicer way to handle these exceptions... For the time being, simply wrap your call in a try/catch block.

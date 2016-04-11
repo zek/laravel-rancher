@@ -86,8 +86,27 @@ abstract class AbstractApi
 
     }
 
+    /**
+     * Apply a filter and retrieve results
+     *
+     * @param $params
+     * @return mixed
+     */
+    public function filter($params)
+    {
 
+        // Get all objects that match filter
+        $object = $this->client->get($this->endpoint, $params);
 
+        // Parse json response
+        $objects = json_decode($object);
+
+        // Convert to entityClass
+        return array_map(function ($object) {
+            return new $this->class($object);
+        }, $objects->data);
+
+    }
 
 
 
