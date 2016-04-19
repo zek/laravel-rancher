@@ -1,10 +1,8 @@
 {
     "name": "benmag/laravel-rancher",
+    "version": "1.0.0",
     "description": "Rancher API wrapper for Laravel",
-    "keywords": [
-        "benmag",
-        "rancher"
-    ],
+    "keywords": ["benmag","rancher", "docker"],
     "homepage": "https://github.com/benmag/laravel-rancher",
     "license": "MIT",
     "authors": [
