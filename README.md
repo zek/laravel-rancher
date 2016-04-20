@@ -31,7 +31,7 @@ Then add the `Rancher` facade to your `aliases` key: `'Rancher' => Benmag\Ranche
 ## Configuration
 Configuration can be done via your `.env` file.
 ```
-RANCHER_BASE_URL=http://localhost:8080/v1
+RANCHER_BASE_URL=http://localhost:8080/v1/
 RANCHER_ACCESS_KEY=xxxxxxx
 RANCHER_SECRET_KEY=xxxxxxx
 ```
