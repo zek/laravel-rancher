@@ -5,6 +5,7 @@ namespace Benmag\Rancher;
 use Benmag\Rancher\Factories\Api\Container;
 use Benmag\Rancher\Factories\Api\Environment;
 use Benmag\Rancher\Factories\Api\Host;
+use Benmag\Rancher\Factories\Api\Machine;
 use Benmag\Rancher\Factories\Api\Project;
 use Benmag\Rancher\Factories\Api\Service;
 use Benmag\Rancher\Factories\Api\LoadBalancerService;
@@ -17,11 +18,24 @@ use Benmag\Rancher\Factories\Api\LoadBalancerService;
  */
 class Rancher {
 
-    protected $client;
+    public $client;
 
     public function __construct(Factories\Client $client)
     {
         $this->client = $client;
+    }
+
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
+    /**
+     * @return Factories\Api\Host
+     */
+    public function machine()
+    {
+        return new Machine($this->client);
     }
 
     /**
