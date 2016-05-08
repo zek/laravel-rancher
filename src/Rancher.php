@@ -7,8 +7,10 @@ use Benmag\Rancher\Factories\Api\Environment;
 use Benmag\Rancher\Factories\Api\Host;
 use Benmag\Rancher\Factories\Api\Machine;
 use Benmag\Rancher\Factories\Api\Project;
+use Benmag\Rancher\Factories\Api\RegistryCredential;
 use Benmag\Rancher\Factories\Api\Service;
 use Benmag\Rancher\Factories\Api\LoadBalancerService;
+use Benmag\Rancher\Factories\Api\Registry;
 
 /**
  * Rancher API wrapper for Laravel
@@ -86,5 +88,20 @@ class Rancher {
         return new LoadBalancerService($this->client);
     }
 
+    /**
+     * @return Factories\Api\Registry
+     */
+    public function registry()
+    {
+        return new Registry($this->client);
+    }
+
+    /**
+     * @return Factories\Api\RegistryCredential
+     */
+    public function registryCredential()
+    {
+        return new RegistryCredential($this->client);
+    }
 
 }
