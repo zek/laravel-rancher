@@ -33,10 +33,23 @@ abstract class AbstractEntity
             $parameters = get_object_vars($parameters);
         }
 
+        // Dynamically add additional fields
+        foreach($parameters['_fields'] as $field) {
+
+            $property = static::convertToCamelCase($field);
+
+            if(!property_exists($this, $property)) {
+                $this->$property = null;
+            }
+
+        }
+
         $this->build($parameters);
     }
 
     /**
+     * Fill the defined parameters with corresponding data
+     *
      * @param array $parameters
      */
     public function build(array $parameters)

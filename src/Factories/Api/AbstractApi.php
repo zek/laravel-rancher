@@ -37,6 +37,27 @@ abstract class AbstractApi
     protected $endpoint;
 
     /**
+     * Additional fields for entity to make available
+     *
+     * @var array
+     */
+    protected $fields = [];
+
+    /**
+     * Additional endpoints to load with this request
+     *
+     * @var array
+     */
+    protected $with = [];
+
+    /**
+     * Filters to apply to this request
+     *
+     * @var array
+     */
+    protected $filter = [];
+
+    /**
      * Inject API Client
      *
      * @param Client $client
@@ -54,7 +75,7 @@ abstract class AbstractApi
     public function all()
     {
         // Get all objects from Rancher API
-        $objects = $this->client->get($this->endpoint);
+        $objects = $this->client->get($this->endpoint, $this->prepareParams());
 
         // Decode the json response
         $objects = json_decode($objects);
@@ -69,65 +90,119 @@ abstract class AbstractApi
     /**
      * Get a specified Entity from the API resource.
      *
-     * @param $id
+     * @param null $id
      * @return mixed
      */
-    public function get($id)
+    public function get($id = null)
     {
+
+        // Prep the endpoint
+        $endpoint = ($id) ? $this->endpoint . "/" . $id : $this->endpoint;
 
         // Get the resource
-        $object = $this->client->get($this->endpoint . "/" .$id);
+        $response = $this->client->get($endpoint, $this->prepareParams());
 
-        // Parse json response
-        $object = json_decode($object);
-
-        // Instantiate new entityClass
-        return new $this->class($object);
+        // Handle response
+        return $this->handleResponse(json_decode($response));
 
     }
 
     /**
-     * Apply a filter and retrieve results
+     * Define additional fields for entity to dynamically expose.
      *
-     * @param $params
+     * Use this to enable access properties that are
+     * not explicitly defined by the entity
+     *
+     * @var array
+     * @return $this
+     */
+    public function fields($fields)
+    {
+        $this->fields = array_merge($this->fields, $fields);
+        return $this;
+    }
+
+    /**
+     * Define the endpoints to load
+     *
+     * @var array
+     * @return $this
+     */
+    public function with($relations)
+    {
+        $this->with = $relations;
+        $this->fields = array_merge($this->fields, $this->with);
+        return $this;
+    }
+
+    /**
+     * Apply a filter to apply on request
+     *
+     * @param $filter
      * @return mixed
      */
-    public function filter($params)
+    public function filter($filter)
     {
+        $this->filter = $filter;
+        return $this;
+    }
 
-        // Get all objects that match filter
-        $object = $this->client->get($this->endpoint, $params);
+    /**
+     * Prepare the params for the request
+     *
+     * @return array
+     */
+    public function prepareParams()
+    {
+        return array_merge(
+            ['include' => implode(",", $this->with)],
+            $this->filter
+        );
+    }
 
-        // Parse json response
-        $objects = json_decode($object);
+    /**
+     * Handle API response.
+     *
+     * When a filter has been applied, we must handle
+     * the response differently.
+     *
+     * @param $response
+     * @return array
+     */
+    public function handleResponse($response) {
 
-        // Convert to entityClass
-        return array_map(function ($object) {
-            return new $this->class($object);
-        }, $objects->data);
+        // No filter has been applied to this request.
+        // Standard request, instantiate a single object.
+        if(empty($this->filter)) {
+            return $this->instantiateEntity($response);
+        }
+
+        // Filter applied.
+        // Instantiate an object for each result returned.
+        else {
+            return array_map(function ($object) {
+                return $this->instantiateEntity($object);
+            }, $response->data);
+        }
 
     }
 
-
-
     /**
-     * Send create request to API
+     * Instantiate a new entityClass
      *
-     * @param $id
-     * @param $entity
+     * @param $params
      */
-//    public function update($id, $entity)
-//    {
-//    }
+    public function instantiateEntity($params)
+    {
 
-    /**
-     * Send create request to API
-     *
-     * @param $id
-     */
-//    public function delete($id)
-//    {
-//    }
+        // Modify params so the class builder knows what was included via with()
+        $params->_with = $this->with;
 
+        $params->_fields = $this->fields;
+
+        // Instantiate new entity class
+        return new $this->class($params);
+
+    }
 
 }
