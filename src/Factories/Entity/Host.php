@@ -30,6 +30,13 @@ class Host extends AbstractEntity
     public $hostname;
 
     /**
+     * Information about the host
+     *
+     * @var json
+     */
+    public $info;
+
+    /**
      * Publicly available endpoints for the host
      *
      * @var array
