@@ -34,9 +34,8 @@ Configuration can be done via your `.env` file.
 RANCHER_BASE_URL=http://localhost:8080/v1/
 RANCHER_ACCESS_KEY=xxxxxxx
 RANCHER_SECRET_KEY=xxxxxxx
-```
-
->You may also publish the config file to `config/rancher.php` for editing:
+````
+>You may also publish the config file to `config/rancher.pzhp` for editing:
 `php artisan vendor:publish --provider="Benmag\Rancher\RancherServiceProvider"`
  
 ### Notes
@@ -400,10 +399,19 @@ Define additional fields from the API for the entity to dynamically expose. You 
 Rancher::service()->fields(['uuid'])->get("1s724");
 ```
 
+#### Scope
+By default, Rancher's scope is the default Project your credentials have access too. This chained method lets you easily change the scope to another project your credentials have access to on the fly. 
+```php
+Rancher::host()->scope('1a3302')->all();
+```
+
+Of course, you may utilize the `setClient` method to change the client to something completely new but if you want to change 
+
 #### All together now
 Here is a simple example of how you can use method chaining to build elaborate Rancher API requests.
 ```php
 Rancher::services()
+            ->scope('1a3302')
             ->with(['instances'])
             ->filter(['environmentId' => "1e512"])
             ->fields(['uuid'])
@@ -483,4 +491,3 @@ The Rancher API is extensive. I've attempted to cover all of the key endpoints  
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-

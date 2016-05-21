@@ -3,8 +3,6 @@
 namespace Benmag\Rancher\Factories\Api;
 
 use Benmag\Rancher\Factories\Client;
-use Benmag\Rancher\Factories\Entity\Host as HostEntity;
-use Benmag\Rancher\Factories\Entity\Container;
 
 /**
  * Rancher API wrapper for Laravel
@@ -35,6 +33,13 @@ abstract class AbstractApi
      * @var string
      */
     protected $endpoint;
+
+    /**
+     * Optional scope to apply
+     *
+     * @var string
+     */
+    protected $scope;
 
     /**
      * Additional fields for entity to make available
@@ -75,7 +80,7 @@ abstract class AbstractApi
     public function all()
     {
         // Get all objects from Rancher API
-        $objects = $this->client->get($this->endpoint, $this->prepareParams());
+        $objects = $this->client->get($this->getEndpoint(), $this->prepareParams());
 
         // Decode the json response
         $objects = json_decode($objects);
@@ -97,7 +102,7 @@ abstract class AbstractApi
     {
 
         // Prep the endpoint
-        $endpoint = ($id) ? $this->endpoint . "/" . $id : $this->endpoint;
+        $endpoint = ($id) ? $this->getEndpoint() . "/" . $id : $this->getEndpoint();
 
         // Get the resource
         $response = $this->client->get($endpoint, $this->prepareParams());
@@ -203,6 +208,57 @@ abstract class AbstractApi
         // Instantiate new entity class
         return new $this->class($params);
 
+    }
+
+    /**
+     * By default Rancher's scope is the default
+     * Project the credentials have access too.
+     *
+     * Use this method to set the scope.
+     */
+    public function scope($projectId)
+    {
+        $this->scope = "projects/" . $projectId . "/";
+        return $this;
+    }
+
+
+
+    /**
+     * Run available accessor's before retrieving value.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        if(method_exists($this, 'get'.$key.'Value')) {
+            return $this->{'get'.$key.'Value'}($this->$key);
+        }
+
+        return $this->$key;
+    }
+
+    /**
+     * Public accessor to prefix scope to the endpoint value.
+     *
+     * @param $value
+     * @return string
+     */
+    public function getEndpointValue($value)
+    {
+        return $this->scope . $value;
+    }
+
+    /**
+     * Internal getter method to ensure the
+     * endpoint we receive is correct
+     *
+     * @return string
+     */
+    private function getEndpoint()
+    {
+        return $this->__get("endpoint");
     }
 
 }
