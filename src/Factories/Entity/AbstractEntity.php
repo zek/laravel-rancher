@@ -108,6 +108,22 @@ abstract class AbstractEntity
 
         }
 
+        // We've got an object, see if we can instantiate that into an entity
+        else if(gettype($value) == "object") {
+
+            if(property_exists($value, 'type')) {
+
+                // Get the class of the new entity we want to instantiate
+                $class = (new \ReflectionClass($this))->getNamespaceName() . "\\" . ucfirst($value->type);
+
+                // Update the property with the instantiated entity
+                if(class_exists($class)) {
+                    $this->$property = new $class($value);
+                }
+
+            }
+        }
+
     }
 
     /**
