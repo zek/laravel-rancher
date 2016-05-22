@@ -30,6 +30,11 @@ class Machine extends AbstractEntity
     /**
      * @var string
      */
+    public $driver;
+
+    /**
+     * @var string
+     */
     public $dockerVersion;
 
     /**
