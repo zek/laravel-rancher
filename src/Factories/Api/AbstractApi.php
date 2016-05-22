@@ -87,7 +87,7 @@ abstract class AbstractApi
 
         // Convert to entityClass
         return array_map(function ($object) {
-            return new $this->class($object);
+            return $this->instantiateEntity($object);
         }, $objects->data);
 
     }
