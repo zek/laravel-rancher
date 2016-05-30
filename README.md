@@ -364,6 +364,9 @@ Rancher::loadBalancerService()->removeServiceLink("1s24", $remove);
 ### Registry Credential 
 [todo]
 
+### Registration Token
+[todo]
+
 ### Query Building 
 The wrapper also provides a convenient way for you to build fairly elaborate Rancher API requests.
 The following methods return the instance so you can chain more constraints onto the request as required.

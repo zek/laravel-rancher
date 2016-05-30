@@ -11,6 +11,7 @@ use Benmag\Rancher\Factories\Api\RegistryCredential;
 use Benmag\Rancher\Factories\Api\Service;
 use Benmag\Rancher\Factories\Api\LoadBalancerService;
 use Benmag\Rancher\Factories\Api\Registry;
+use Benmag\Rancher\Factories\Api\RegistrationToken;
 
 /**
  * Rancher API wrapper for Laravel
@@ -102,6 +103,14 @@ class Rancher {
     public function registryCredential()
     {
         return new RegistryCredential($this->client);
+    }
+
+    /**
+     * @return Factories\Api\RegistrationToken
+     */
+    public function registrationToken()
+    {
+        return new RegistrationToken($this->client);
     }
 
 }
