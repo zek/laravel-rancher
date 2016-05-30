@@ -82,8 +82,11 @@ abstract class AbstractEntity
 
         $this->$property = $value;
 
+
+        // Parse $value. Is it an entity or an array containing entities?
+
         // We've got an array, lets see if we can instantiate an entity
-        if(is_array($value) && !empty($value)) {
+        if(is_array($value) && !empty($value) && is_object(head($value))) {
 
             $array = $value; // for clarity, call it what it is
 
