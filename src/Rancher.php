@@ -12,6 +12,7 @@ use Benmag\Rancher\Factories\Api\Service;
 use Benmag\Rancher\Factories\Api\LoadBalancerService;
 use Benmag\Rancher\Factories\Api\Registry;
 use Benmag\Rancher\Factories\Api\RegistrationToken;
+use Benmag\Rancher\Factories\Api\ServiceConsumeMap;
 
 /**
  * Rancher API wrapper for Laravel
@@ -111,6 +112,14 @@ class Rancher {
     public function registrationToken()
     {
         return new RegistrationToken($this->client);
+    }
+
+    /**
+     * @return Factories\Api\ServiceConsumeMap
+     */
+    public function serviceConsumeMap()
+    {
+        return new ServiceConsumeMap($this->client);
     }
 
 }
