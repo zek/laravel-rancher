@@ -30,12 +30,19 @@ class Environment extends AbstractEntity
     public $accountId;
 
     /**
-     * Current state of container
+     * Current state of environment
      *
      * @var string
      */
     public $state;
 
+    /**
+     * Current health of environment
+     *
+     * @var string
+     */
+    public $healthState;
+    
     /**
      * The docker-compose.yml file
      * for the Environment
