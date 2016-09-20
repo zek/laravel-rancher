@@ -76,7 +76,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         $environment = json_decode($environment);
 
         // Create ContainerEntity from response
-        return new EnvironmentEntity($environment);
+        return new ServiceEntity($environment);
 
     }
 
@@ -87,7 +87,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     public function activate($id)
     {
 
-        // Send "activate" host request
+        // Send "activate" service request
         $service = $this->client->post($this->endpoint . "/" . $id, [
             'action' => 'activate'
         ]);
@@ -106,7 +106,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     public function deactivate($id)
     {
 
-        // Send "deactivate" host request
+        // Send "deactivate" service request
         $service = $this->client->post($this->endpoint . "/" . $id, [
             'action' => 'deactivate'
         ]);
@@ -119,6 +119,26 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function restart($id)
+    {
+        // Prepare data for submission
+        $data = [
+            'rollingRestartStrategy' => []
+        ];
+
+        // Send "restart" service request
+        $service = $this->client->post($this->endpoint . "/" . $id . "?action=restart", $data, ['content_type' => 'json']);
+
+        // Parse response
+        $service = json_decode($service);
+
+        // Create HostEntity from response
+        return new ServiceEntity($service);
+
+    }
 
     /**
      * {@inheritdoc}

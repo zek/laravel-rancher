@@ -67,6 +67,13 @@ interface Service {
      */
     public function deactivate($id);
 
+    /**
+     * Restart a service
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Service
+     */
+    public function restart($id);
 
 
     /**
