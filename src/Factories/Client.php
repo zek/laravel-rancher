@@ -31,12 +31,32 @@ class Client implements \Benmag\Rancher\Contracts\Client {
     }
 
     /**
+     * Prepare option data to be passed to the Guzzle request
      *
+     * @param array $params
+     * @param array $options
+     * @return array
      */
     private function prepareData($params = [], $options = [])
     {
-        // TODO: Check if we can just send all data as json
-        return array_merge([(array_key_exists('content_type', $options) ? $options['content_type'] : "query") => $params], $options);
+        if(array_get($options, 'content_type') == "json") {
+            $data['json'] = $params; // pass data as array which gets json_encoded
+        } else {
+            $data['query'] = $this->prepareQueryString($params); // pass data as query string
+        }
+
+        return array_merge($data, $options);
+    }
+
+    /**
+     * Prepare a query string from an array of params
+     *
+     * @param array $params
+     * @return string
+     */
+    private function prepareQueryString(array $params = [])
+    {
+        return preg_replace('/%5B[0-9]+%5D/simU', '', http_build_query($params));
     }
 
     /**
@@ -47,7 +67,7 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     public function get($endPoint, array $params = [])
     {
-        $response = $this->client->get($endPoint, [ 'query' => $params ]);
+        $response = $this->client->get($endPoint, $this->prepareData($params));
         switch ($response->getHeader('content-type'))
         {
             case "application/json":
@@ -87,7 +107,7 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     public function put($endPoint, array $params = [])
     {
-        $response = $this->client->put($endPoint, [ 'query' => $params ]);
+        $response = $this->client->put($endPoint, $this->prepareData($params));
         switch ($response->getHeader('content-type'))
         {
             case "application/json":

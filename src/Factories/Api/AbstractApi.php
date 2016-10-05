@@ -160,7 +160,7 @@ abstract class AbstractApi
     public function prepareParams()
     {
         return array_merge(
-            ['include' => implode(",", $this->with)],
+            ['include' => $this->with],
             $this->filter
         );
     }
@@ -196,6 +196,7 @@ abstract class AbstractApi
      * Instantiate a new entityClass
      *
      * @param $params
+     * @return mixed
      */
     public function instantiateEntity($params)
     {

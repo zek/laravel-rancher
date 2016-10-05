@@ -79,5 +79,5 @@ class Service extends AbstractEntity
      * @var string
      */
     public $publicEndpoints;
-
+    
 }
