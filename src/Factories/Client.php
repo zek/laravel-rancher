@@ -105,9 +105,9 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      * @return string
      * @throws \Exception
      */
-    public function put($endPoint, array $params = [])
+    public function put($endPoint, array $params = [], array $options = [])
     {
-        $response = $this->client->put($endPoint, $this->prepareData($params));
+        $response = $this->client->put($endPoint, $this->prepareData($params, $options));
         switch ($response->getHeader('content-type'))
         {
             case "application/json":
