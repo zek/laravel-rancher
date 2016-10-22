@@ -48,11 +48,11 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     /**
      * {@inheritdoc}
      */
-    public function update($id, ServiceEntity $service)
+    public function update($id, array $serviceEntity)
     {
 
         // Send "update" environment request
-        $service = $this->client->put($this->endpoint."/".$id, $service->toArray());
+        $service = $this->client->put($this->endpoint."/".$id, $serviceEntity, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);

@@ -44,10 +44,10 @@ interface Service {
      * Send update request to API
      *
      * @param $id
-     * @param \Benmag\Rancher\Factories\Entity\Service $service
-     * @return \Benmag\Rancher\Factories\Entity\Container
+     * @param array $serviceEntity
+     * @return \Benmag\Rancher\Factories\Entity\Service
      */
-    public function update($id, \Benmag\Rancher\Factories\Entity\Service $service);
+    public function update($id, array $serviceEntity);
 
 
 
