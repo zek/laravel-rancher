@@ -82,4 +82,23 @@ interface Container {
      */
     public function purge($id);
 
+    /**
+     * Execute a command inside a container.
+     * This is the equivalent of a `docker exec`.
+     *
+     * @param $id
+     *
+     * @param \Benmag\Rancher\Factories\Entity\ContainerExec $containerExec
+     * @return mixed
+     */
+    public function execute($id, \Benmag\Rancher\Factories\Entity\ContainerExec $containerExec);
+
+    /**
+     * Retrieve the logs for this container
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function logs($id);
+
 }

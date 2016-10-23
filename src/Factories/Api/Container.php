@@ -2,6 +2,7 @@
 
 namespace Benmag\Rancher\Factories\Api;
 
+use Benmag\Rancher\Factories\Entity\ContainerExec;
 use \Benmag\Rancher\Factories\Entity\Container as ContainerEntity;
 
 /**
@@ -158,6 +159,35 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
 
         // Create ContainerEntity from response
         return new ContainerEntity($container);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function execute($id, ContainerExec $containerExec)
+    {
+
+        // Send command to container
+        $response = $this->client->post($this->endpoint . "/" . $id . "?action=execute", $containerExec->toArray(), ['content_type' => 'json']);
+
+        // Return parsed response
+        return json_decode($response);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function logs($id)
+    {
+        // Send "stop" container request
+        $container = $this->client->post($this->endpoint."/".$id, [
+            'action' => 'logs'
+        ]);
+
+        // Return response containing access token
+        return json_decode($container);
 
     }
 
