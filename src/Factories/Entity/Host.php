@@ -23,6 +23,13 @@ class Host extends AbstractEntity
     public $description;
 
     /**
+     * Account environment belongs to
+     *
+     * @var string
+     */
+    public $accountId;
+
+    /**
      * The given hostname for the host.
      *
      * @var string
