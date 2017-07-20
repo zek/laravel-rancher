@@ -80,14 +80,9 @@ Rancher::host()->get("1h1");
 Rancher::host()->activate("1h1");
 ```
 
-#### Deactivate a Host by ID
+#### Evacuate a Host by ID
 ```php
-Rancher::host()->deactivate("1h1");
-```
-
-#### Restore a Host by ID
-```php
-Rancher::host()->restore("1h1");
+Rancher::host()->evacuate("1h1");
 ```
 
 #### Remove a Host by ID
