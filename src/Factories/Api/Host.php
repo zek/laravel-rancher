@@ -36,7 +36,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "update" environment request
-        $host = $this->client->put($this->endpoint."/".$id, $host->toArray());
+        $host = $this->client->put($this->endpoint . "/" . $id, $host->toArray());
 
         // Parse response
         $host = json_decode($host);
@@ -72,8 +72,27 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "deactivate" host request
-        $host = $this->client->post("hosts/$id", [
+        $host = $this->client->post($this->endpoint . "/" . $id, [
             'action' => 'deactivate'
+        ]);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create HostEntity from response
+        return new HostEntity($host);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function evacuate($id)
+    {
+
+        // Send "remove" host request
+        $host = $this->client->post($this->endpoint . "/" . $id, [
+            'action' => 'evacuate'
         ]);
 
         // Parse response
@@ -91,27 +110,8 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "remove" host request
-        $host = $this->client->post("hosts/$id", [
+        $host = $this->client->post($this->endpoint . "/" . $id, [
             'action' => 'remove'
-        ]);
-
-        // Parse response
-        $host = json_decode($host);
-
-        // Create HostEntity from response
-        return new HostEntity($host);
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function restore($id)
-    {
-
-        // Send "remove" host request
-        $host = $this->client->post("hosts/$id", [
-            'action' => 'restore'
         ]);
 
         // Parse response

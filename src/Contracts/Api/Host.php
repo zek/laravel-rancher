@@ -57,19 +57,19 @@ interface Host {
     public function deactivate($id);
 
     /**
+     * Evacuate a host
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\Host
+     */
+    public function evacuate($id);
+
+    /**
      * Remove a host
      *
      * @param $id
      * @return \Benmag\Rancher\Factories\Entity\Host
      */
     public function remove($id);
-
-    /**
-     * Restore a host
-     *
-     * @param $id
-     * @return \Benmag\Rancher\Factories\Entity\Host
-     */
-    public function restore($id);
 
 }
