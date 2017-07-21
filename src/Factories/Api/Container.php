@@ -36,7 +36,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "create" container request
-        $container = $this->client->post($this->endpoint, $container->toArray());
+        $container = $this->client->post($this->getEndpoint(), $container->toArray());
 
         // Parse response
         $container = json_decode($container);
@@ -55,7 +55,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "start" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'start'
         ]);
 
@@ -74,7 +74,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'stop'
         ]);
 
@@ -93,7 +93,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'restart'
         ]);
 
@@ -112,7 +112,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'remove'
         ]);
 
@@ -131,7 +131,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'restore'
         ]);
 
@@ -150,7 +150,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'purge'
         ]);
 
@@ -169,7 +169,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     {
 
         // Send command to container
-        $response = $this->client->post($this->endpoint . "/" . $id . "?action=execute", $containerExec->toArray(), ['content_type' => 'json']);
+        $response = $this->client->post($this->getEndpoint() . "/" . $id . "?action=execute", $containerExec->toArray(), ['content_type' => 'json']);
 
         // Return parsed response
         return json_decode($response);
@@ -182,7 +182,7 @@ class Container extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Con
     public function logs($id)
     {
         // Send "stop" container request
-        $container = $this->client->post($this->endpoint."/".$id, [
+        $container = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'logs'
         ]);
 
