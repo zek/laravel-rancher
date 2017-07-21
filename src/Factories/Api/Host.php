@@ -36,7 +36,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "update" environment request
-        $host = $this->client->put($this->endpoint . "/" . $id, $host->toArray());
+        $host = $this->client->put($this->getEndpoint() . "/" . $id, $host->toArray());
 
         // Parse response
         $host = json_decode($host);
@@ -53,7 +53,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "activate" host request
-        $host = $this->client->post($this->endpoint . "/" . $id, [
+        $host = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'activate'
         ]);
 
@@ -72,7 +72,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "deactivate" host request
-        $host = $this->client->post($this->endpoint . "/" . $id, [
+        $host = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'deactivate'
         ]);
 
@@ -91,7 +91,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "remove" host request
-        $host = $this->client->post($this->endpoint . "/" . $id, [
+        $host = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'evacuate'
         ]);
 
@@ -110,7 +110,7 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     {
 
         // Send "remove" host request
-        $host = $this->client->post($this->endpoint . "/" . $id, [
+        $host = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'remove'
         ]);
 
