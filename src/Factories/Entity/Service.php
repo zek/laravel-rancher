@@ -30,12 +30,11 @@ class Service extends AbstractEntity
     public $accountId;
 
     /**
-     * The identifier of the Environment
-     * the service belongs to
+     * The identifier of the Stack the service belongs to
      *
      * @var string
      */
-    public $environmentId;
+    public $stackId;
 
     /**
      * Image container is using
@@ -51,6 +50,13 @@ class Service extends AbstractEntity
      * @var integer
      */
     public $scale = 1;
+
+    /**
+     * Start the service once it's created
+     *
+     * @var string
+     */
+    public $startOnCreate;
 
     /**
      * Current state of container

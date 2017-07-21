@@ -202,14 +202,14 @@ use Benmag\Rancher\Factories\Entity\Service;
 
 $newService = new Service([
     'name' => 'newService',
-    'environmentId' => '1e19',
+    'stackId' => '1st312',
     'launchConfig' => [
         'stdinOpen' => true,
         'imageUuid' => 'docker:ubuntu:14.04.3'
     ],
 ]);
 
-Rancher::service()->create($newService);
+Rancher::service()->project("1a8")->create($newService);
 ```
 
 #### Update a Service
@@ -223,7 +223,7 @@ $updatedService = new Service([
     "scale" => 1
 ]);
 
-Rancher::service()->update("1s23", $updatedService);
+Rancher::service()->project("1a8")->update("1s23", $updatedService);
 ```
 
 

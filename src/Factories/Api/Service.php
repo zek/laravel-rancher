@@ -35,7 +35,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send "create" service request
-        $project = $this->client->post($this->endpoint, $service->toArray(), ['content_type' => 'json']);
+        $project = $this->client->post($this->getEndpoint(), $service->toArray(), ['content_type' => 'json']);
 
         // Parse response
         $project = json_decode($project);
@@ -52,7 +52,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send "update" environment request
-        $service = $this->client->put($this->endpoint."/".$id, $serviceEntity, ['content_type' => 'json']);
+        $service = $this->client->put($this->getEndpoint()."/".$id, $serviceEntity, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -70,7 +70,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send "update" environment request
-        $environment = $this->client->delete($this->endpoint."/".$id);
+        $environment = $this->client->delete($this->getEndpoint()."/".$id);
 
         // Parse response
         $environment = json_decode($environment);
@@ -88,7 +88,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send "activate" service request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'activate'
         ]);
 
@@ -107,7 +107,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send "deactivate" service request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'deactivate'
         ]);
 
@@ -130,7 +130,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         ];
 
         // Send "restart" service request
-        $service = $this->client->post($this->endpoint . "/" . $id . "?action=restart", $data, ['content_type' => 'json']);
+        $service = $this->client->post($this->getEndpoint() . "/" . $id . "?action=restart", $data, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -150,7 +150,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         $serviceLink = ['serviceLink' => $serviceLink];
 
         // Send "addservicelink" request
-        $service = $this->client->post($this->endpoint . "/" . $id."?action=addservicelink", $serviceLink, ['content_type' => 'json']);
+        $service = $this->client->post($this->getEndpoint() . "/" . $id."?action=addservicelink", $serviceLink, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -169,7 +169,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         $serviceLinks = ['serviceLinks' => $serviceLinks];
 
         // Send "setservicelinks" request
-        $service = $this->client->post($this->endpoint . "/" . $id."?action=setservicelinks", $serviceLinks, ['content_type' => 'json']);
+        $service = $this->client->post($this->getEndpoint() . "/" . $id."?action=setservicelinks", $serviceLinks, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -189,7 +189,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         $serviceLink = ['serviceLink' => $serviceLink];
 
         // Send "removeservicelink" request
-        $service = $this->client->post($this->endpoint . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
+        $service = $this->client->post($this->getEndpoint() . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -209,7 +209,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send upgrade request
-        $service = $this->client->post($this->endpoint . "/" . $id."?action=upgrade", $serviceUpgrade, ['content_type' => 'json']);
+        $service = $this->client->post($this->getEndpoint() . "/" . $id."?action=upgrade", $serviceUpgrade, ['content_type' => 'json']);
 
         // Parse response
         $service = json_decode($service);
@@ -226,7 +226,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send finish upgrade request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'finishupgrade'
         ]);
 
@@ -245,7 +245,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send cancel upgrade request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'cancelupgrade'
         ]);
 
@@ -264,7 +264,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send cancel upgrade request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'rollback'
         ]);
 
@@ -283,7 +283,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     {
 
         // Send cancel upgrade request
-        $service = $this->client->post($this->endpoint . "/" . $id, [
+        $service = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'cancelrollback'
         ]);
 
