@@ -37,7 +37,7 @@ class Machine extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Machi
         $data = $machine->toArray();
 
         // Send "create" request
-        $machine = $this->client->post($this->endpoint, $data, ['content_type' => 'json']);
+        $machine = $this->client->post($this->getEndpoint(), $data, ['content_type' => 'json']);
 
         // Parse response
         $machine = json_decode($machine);
@@ -54,7 +54,7 @@ class Machine extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Machi
     {
 
         // Send delete request
-        $machine = $this->client->delete($this->endpoint."/".$id);
+        $machine = $this->client->delete($this->getEndpoint()."/".$id);
 
         // Parse response
         $machine = json_decode($machine);
@@ -71,7 +71,7 @@ class Machine extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Machi
     {
 
         // Send "remove" container request
-        $machine = $this->client->post($this->endpoint."/".$id, ['action' => 'remove']);
+        $machine = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'remove']);
 
 
         // Parse response
@@ -89,7 +89,7 @@ class Machine extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Machi
     {
 
         // Send "stop" container request
-        $machine = $this->client->post($this->endpoint."/".$id, ['action' => 'activate']);
+        $machine = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'activate']);
 
         // Parse response
         $machine = json_decode($machine);
@@ -106,7 +106,7 @@ class Machine extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Machi
     {
 
         // Send "stop" container request
-        $machine = $this->client->post($this->endpoint."/".$id, ['action' => 'deactivate']);
+        $machine = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'deactivate']);
 
         // Parse response
         $machine = json_decode($machine);
