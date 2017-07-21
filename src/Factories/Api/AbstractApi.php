@@ -223,43 +223,22 @@ abstract class AbstractApi
         return $this;
     }
 
-
-
     /**
-     * Run available accessor's before retrieving value.
-     *
-     * @param  string  $key
-     * @return mixed
+     * An alias of the scope method
      */
-    public function __get($key)
+    public function project($projectId)
     {
-        if(method_exists($this, 'get'.$key.'Value')) {
-            return $this->{'get'.$key.'Value'}($this->$key);
-        }
-
-        return $this->$key;
+        return $this->scope($projectId);
     }
 
     /**
-     * Public accessor to prefix scope to the endpoint value.
-     *
-     * @param $value
-     * @return string
-     */
-    public function getEndpointValue($value)
-    {
-        return $this->scope . $value;
-    }
-
-    /**
-     * Internal getter method to ensure the
-     * endpoint we receive is correct
+     * Get the API endpoint
      *
      * @return string
      */
-    private function getEndpoint()
+    public function getEndpoint()
     {
-        return $this->__get("endpoint");
+        return $this->scope . $this->endpoint;
     }
 
 }

@@ -115,15 +115,15 @@ $newContainer = new Container([
 Rancher::container()->create($newContainer);
 ```
 
-### Environment
+### Stack
 
-#### Create an Environment 
+#### Create a Stack 
 ```php
 use Rancher;
-use Benmag\Rancher\Factories\Entity\Environment;
+use Benmag\Rancher\Factories\Entity\Stack;
 
-$newEnvironment = new Environment([
-    'name' => "yseees",
+$newStack = new Stack([
+    'name' => "my-stack",
     'description' => 'An example stack',
     'dockerCompose' => "odoo:\n  image: odoo\n  ports:\n    - \"8069:8069\"\n  links:\n    - db\ndb:\n  image: postgres\n  environment:\n    - POSTGRES_USER=odoo\n    - POSTGRES_PASSWORD=odoo\n",
     'rancherCompose' => ".catalog:\n  name: \"Odoo\"\n  version: \"0.1-educaas\"\n  description: \"ERP management powered by Odoo\"\n  uuid: odoo-0\n  questions:\n\nodoo:\n",
@@ -131,30 +131,32 @@ $newEnvironment = new Environment([
     'startOnCreate' => true
 ]);
 
-Rancher::environment()->create($newEnvironment);
+Rancher::stack()->project('1a8')->create($newStack);
 ```
 
-#### Update an Environment
+When creating a Stack, you will need to tell Rancher which Project you want to create it in. 
+
+#### Update an Stack
 ```php
 use Rancher;
-use Benmag\Rancher\Factories\Entity\Environment;
+use Benmag\Rancher\Factories\Entity\Stack;
 
-$updatedEnvironment = new Environment([
-    'name' => "stack",
-    'description' => 'An updated stack/environment',
+$updatedStack = new Stack([
+    'name' => "my-updated-stack",
+    'description' => 'An updated stack',
 ]);
 
-Rancher::environment()->update("1e17", $updatedEnvironment);
+Rancher::stack()->update("1st312", $updatedStack);
 ```
 
-#### Activate Services in an Environment
+#### Activate Services in an Stack
 ```php
-Rancher::environment()->activateServices("1e17");
+Rancher::stack()->activateServices("1st312");
 ```
 
-#### Deactivate Services in an Environment
+#### Deactivate Services in an Stack
 ```php
-Rancher::environment()->deactivateServices("1e17");
+Rancher::stack()->deactivateServices("1st312");
 ```
 
 

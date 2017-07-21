@@ -2,11 +2,11 @@
 
 namespace Benmag\Rancher\Factories\Entity;
 
-class Environment extends AbstractEntity
+class Stack extends AbstractEntity
 {
 
     /**
-     * The unique identifier for the environment
+     * The unique identifier for the stack
      *
      * @var string
      */
@@ -23,21 +23,21 @@ class Environment extends AbstractEntity
     public $description;
 
     /**
-     * Account environment belongs to
+     * Account stack belongs to
      *
      * @var string
      */
     public $accountId;
 
     /**
-     * Current state of environment
+     * Current state of stack
      *
      * @var string
      */
     public $state;
 
     /**
-     * Current health of environment
+     * Current health of stack
      *
      * @var string
      */
@@ -45,7 +45,7 @@ class Environment extends AbstractEntity
     
     /**
      * The docker-compose.yml file
-     * for the Environment
+     * for the stack
      *
      * @var string
      */
@@ -53,7 +53,7 @@ class Environment extends AbstractEntity
 
     /**
      * The rancher-compose.yml file
-     * for the Environment.
+     * for the stack.
      *
      * @var string
      */
@@ -72,5 +72,10 @@ class Environment extends AbstractEntity
      * @var bool
      */
     public $startOnCreate = true;
+
+    /**
+     * @var boolean
+     */
+    public $system = false;
 
 }
