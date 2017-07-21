@@ -159,6 +159,11 @@ Rancher::stack()->activateServices("1st312");
 Rancher::stack()->deactivateServices("1st312");
 ```
 
+#### Delete a Stack
+```php
+Rancher::stack()->delete("1st312");
+```
+
 
 ### Project
 #### Create a new Project
@@ -171,6 +176,21 @@ $project = new Project([
 ]);
 
 Rancher::project()->create($project);
+```
+
+#### Activate a Project
+```php
+Rancher::project()->activate("1a8");
+```
+
+#### Deactivate a Project
+```php
+Rancher::project()->deactivate("1a8");
+```
+
+#### Delete a Project
+```php
+Rancher::project()->delete("1a8");
 ```
 
 
@@ -385,7 +405,7 @@ $params = [
     'name_prefix' => 'Hello', // name LIKE 'Hello%'
 ];
 
-Rancher::environment()->filter($params)->get();
+Rancher::stack()->filter($params)->get();
 
 ```
 > Remember: to change the field you filter on, change the key e.g. `['state' => 'active']` or `['description_notnull' => null]`
