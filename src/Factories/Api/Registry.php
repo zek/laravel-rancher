@@ -37,7 +37,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
         $data = $registry->toArray();
 
         // Send "create" request
-        $registry = $this->client->post($this->endpoint, $data, ['content_type' => 'json']);
+        $registry = $this->client->post($this->getEndpoint(), $data, ['content_type' => 'json']);
 
         // Parse response
         $registry = json_decode($registry);
@@ -54,7 +54,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send "update" request
-        $registry = $this->client->put($this->endpoint."/".$id, $registry->toArray());
+        $registry = $this->client->put($this->getEndpoint()."/".$id, $registry->toArray());
 
         // Parse response
         $registry = json_decode($registry);
@@ -71,7 +71,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send delete request
-        $registry = $this->client->delete($this->endpoint."/".$id);
+        $registry = $this->client->delete($this->getEndpoint()."/".$id);
 
         // Parse response
         $registry = json_decode($registry);
@@ -88,7 +88,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send "activate" request
-        $registry = $this->client->post($this->endpoint."/".$id, ['action' => 'activate']);
+        $registry = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'activate']);
 
         // Parse response
         $registry = json_decode($registry);
@@ -105,7 +105,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send "deactivate" request
-        $registry = $this->client->post($this->endpoint."/".$id, ['action' => 'deactivate']);
+        $registry = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'deactivate']);
 
         // Parse response
         $registry = json_decode($registry);
@@ -122,7 +122,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send purge request
-        $registry = $this->client->post($this->endpoint."/".$id, ['action' => 'purge']);
+        $registry = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'purge']);
 
         // Parse response
         $registry = json_decode($registry);
@@ -139,7 +139,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send "remove" request
-        $registry = $this->client->post($this->endpoint."/".$id, ['action' => 'remove']);
+        $registry = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'remove']);
 
 
         // Parse response
@@ -157,7 +157,7 @@ class Registry extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Regi
     {
 
         // Send "restore" request
-        $registry = $this->client->post($this->endpoint."/".$id, ['action' => 'restore']);
+        $registry = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'restore']);
 
         // Parse response
         $registry = json_decode($registry);

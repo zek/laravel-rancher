@@ -37,7 +37,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
         $data = $registryCredential->toArray();
 
         // Send "create" request
-        $registryCredential = $this->client->post($this->endpoint, $data, ['content_type' => 'json']);
+        $registryCredential = $this->client->post($this->getEndpoint(), $data, ['content_type' => 'json']);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -54,7 +54,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send "update" request
-        $registryCredential = $this->client->put($this->endpoint."/".$id, $registryCredential->toArray());
+        $registryCredential = $this->client->put($this->getEndpoint()."/".$id, $registryCredential->toArray());
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -71,7 +71,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send delete request
-        $registryCredential = $this->client->delete($this->endpoint."/".$id);
+        $registryCredential = $this->client->delete($this->getEndpoint()."/".$id);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -88,7 +88,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send "activate" request
-        $registryCredential = $this->client->post($this->endpoint."/".$id, ['action' => 'activate']);
+        $registryCredential = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'activate']);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -105,7 +105,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send "deactivate" request
-        $registryCredential = $this->client->post($this->endpoint."/".$id, ['action' => 'deactivate']);
+        $registryCredential = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'deactivate']);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -122,7 +122,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send purge request
-        $registryCredential = $this->client->post($this->endpoint."/".$id, ['action' => 'purge']);
+        $registryCredential = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'purge']);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);
@@ -139,7 +139,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send "remove" request
-        $registryCredential = $this->client->post($this->endpoint."/".$id, ['action' => 'remove']);
+        $registryCredential = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'remove']);
 
 
         // Parse response
@@ -157,7 +157,7 @@ class RegistryCredential extends AbstractApi implements \Benmag\Rancher\Contract
     {
 
         // Send "restore" request
-        $registryCredential = $this->client->post($this->endpoint."/".$id, ['action' => 'restore']);
+        $registryCredential = $this->client->post($this->getEndpoint()."/".$id, ['action' => 'restore']);
 
         // Parse response
         $registryCredential = json_decode($registryCredential);

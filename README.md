@@ -376,10 +376,35 @@ Rancher::loadBalancerService()->removeServiceLink("1s24", $remove);
 [todo]
 
 ### Registry
+#### Add Registry
+```php
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\Registry;
+
+$registry = new Registry([
+    'serverAddress' => "registry.example.com",
+]);
+
+$registryResponse = Rancher::registry()->project("1a8")->create($registry));
+```
+
 [todo]
 
 ### Registry Credential 
-[todo]
+#### Add account 
+```php
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\RegistryCredential;
+
+$cred = new RancherRegistryCredential([
+    'registryId' => "1sp120",
+    'email' => "email@example.com",
+    'publicValue' => "username",
+    'secretValue' => "password"
+]);
+
+Rancher::registryCredential()->create($cred);
+```
 
 ### Registration Token
 [todo]
