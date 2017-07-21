@@ -30,7 +30,7 @@ class LoadBalancerService extends AbstractEntity
     /**
      * @var string
      */
-    public $environmentId;
+    public $stackId;
 
     /**
      * @var string
@@ -50,6 +50,6 @@ class LoadBalancerService extends AbstractEntity
     /**
      * @var array
      */
-    public $loadBalancerConfig = null;
+    public $lbConfig = null;
 
 }

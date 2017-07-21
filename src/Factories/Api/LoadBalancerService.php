@@ -34,7 +34,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     {
 
         // Send "create" project request
-        $lb = $this->client->post($this->endpoint, $lb->toArray(), ['content_type' => 'json']);
+        $lb = $this->client->post($this->getEndpoint(), $lb->toArray(), ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -50,8 +50,11 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     public function update($id, LoadBalancerServiceEntity $lb)
     {
 
+        // Strip empty values
+        $data = array_filter($lb->toArray());
+
         // Send "update" environment request
-        $lb = $this->client->put($this->endpoint."/".$id, $lb->toArray(), ['content_type' => 'json']);
+        $lb = $this->client->put($this->getEndpoint()."/".$id, $data, ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -68,7 +71,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     {
 
         // Send "stop" container request
-        $lb = $this->client->delete($this->endpoint."/".$id, [], ['auth' => null]);
+        $lb = $this->client->delete($this->getEndpoint()."/".$id, [], ['auth' => null]);
 
         // Parse response
         $lb = json_decode($lb);
@@ -86,7 +89,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     {
 
         // Send "activate" host request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
+        $lb = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'activate'
         ]);
 
@@ -105,7 +108,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
     {
 
         // Send "deactivate" host request
-        $lb = $this->client->post($this->endpoint . "/" . $id, [
+        $lb = $this->client->post($this->getEndpoint() . "/" . $id, [
             'action' => 'deactivate'
         ]);
 
@@ -113,7 +116,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
         $lb = json_decode($lb);
 
         // Create HostEntity from response
-        return new ServiceEntity($lb);
+        return new LoadBalancerServiceEntity($lb);
 
     }
 
@@ -128,7 +131,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
         $serviceLink = ['serviceLink' => $serviceLink];
 
         // Send "addservicelink" request
-        $lb = $this->client->post($this->endpoint . "/" . $id."?action=addservicelink", $serviceLink, ['content_type' => 'json']);
+        $lb = $this->client->post($this->getEndpoint() . "/" . $id."?action=addservicelink", $serviceLink, ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -147,7 +150,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
         $serviceLinks = ['serviceLinks' => $serviceLinks];
 
         // Send "setservicelinks" request
-        $lb = $this->client->post($this->endpoint . "/" . $id."?action=setservicelinks", $serviceLinks, ['content_type' => 'json']);
+        $lb = $this->client->post($this->getEndpoint() . "/" . $id."?action=setservicelinks", $serviceLinks, ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);
@@ -167,7 +170,7 @@ class LoadBalancerService extends AbstractApi implements \Benmag\Rancher\Contrac
         $serviceLink = ['serviceLink' => $serviceLink];
 
         // Send "removeservicelink" request
-        $lb = $this->client->post($this->endpoint . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
+        $lb = $this->client->post($this->getEndpoint() . "/" . $id."?action=removeservicelink", $serviceLink, ['content_type' => 'json']);
 
         // Parse response
         $lb = json_decode($lb);

@@ -306,15 +306,15 @@ use Benmag\Rancher\Factories\Entity\LoadBalancerService;
 
 $newLb = new LoadBalancerService([
     'name' => 'lb',
-    'environmentId' => '1e4',
-    'projectId' => '1a5',
+    'stackId' => '1st316',
     'launchConfig' => [
         'ports' => ["80:80"],
         'startOnCreate' => true,
+        'imageUuid' => 'docker:rancher/lb-service-haproxy:v0.7.5'
     ],
 ]);
 
-Rancher::loadBalancerService()->create($newLb);
+Rancher::loadBalancerService()->project('1a8')->create($newLb);
 ```
 
 #### Update a Load Balancer
@@ -326,7 +326,7 @@ $updatedLb = new LoadBalancerService([
     "name" => "updated-lb",
 ]);
 
-Rancher::loadBalancerService()->update("1s26", $updatedLb);
+Rancher::loadBalancerService()->project("1a8")->update("1s26", $updatedLb);
 ```
 
 
