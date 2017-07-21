@@ -35,7 +35,7 @@ class ServiceConsumeMap extends AbstractApi implements \Benmag\Rancher\Contracts
     {
 
         // Send remove request
-        $serviceConsumeMap = $this->client->post($this->endpoint."/".$id, [
+        $serviceConsumeMap = $this->client->post($this->getEndpoint()."/".$id, [
             'action' => 'remove'
         ]);
 
