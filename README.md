@@ -308,10 +308,24 @@ $newLb = new LoadBalancerService([
     'name' => 'lb',
     'stackId' => '1st316',
     'launchConfig' => [
-        'ports' => ["80:80"],
-        'startOnCreate' => true,
+        'ports' => [
+            "80",
+            "8080"
+        ],
         'imageUuid' => 'docker:rancher/lb-service-haproxy:v0.7.5'
     ],
+    'lbConfig' => [
+        'portRules' => [
+            [
+                'hostname' => '',
+                'prioirty' => 1,
+                'serviceId' => "1s583",
+                'sourcePort' => 8080,
+                'targetPort' => 80,
+                'type' => 'portRule'
+            ]
+        ]
+    ]
 ]);
 
 Rancher::loadBalancerService()->project('1a8')->create($newLb);
@@ -323,7 +337,26 @@ use Rancher;
 use Benmag\Rancher\Factories\Entity\LoadBalancerService;
 
 $updatedLb = new LoadBalancerService([
-    "name" => "updated-lb",
+    'name' => 'lb',
+    'stackId' => '1st316',
+    'launchConfig' => [
+        'ports' => [
+            "80",
+        ],
+        'imageUuid' => 'docker:rancher/lb-service-haproxy:v0.7.5'
+    ],
+    'lbConfig' => [
+        'portRules' => [
+            [
+                'hostname' => '',
+                'protocol' => 'http',
+                'serviceId' => "1s583",
+                'sourcePort' => 80,
+                'targetPort' => 80,
+                'type' => 'portRule'
+            ]
+        ]
+    ],
 ]);
 
 Rancher::loadBalancerService()->project("1a8")->update("1s26", $updatedLb);
