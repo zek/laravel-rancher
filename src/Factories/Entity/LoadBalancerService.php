@@ -38,6 +38,11 @@ class LoadBalancerService extends AbstractEntity
     public $scale = 1;
 
     /**
+     * @var boolean
+     */
+    public $startOnCreate = true;
+
+    /**
      * @var string
      */
     public $type = "loadBalancerService";

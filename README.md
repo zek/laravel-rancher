@@ -318,7 +318,6 @@ $newLb = new LoadBalancerService([
         'portRules' => [
             [
                 'hostname' => '',
-                'prioirty' => 1,
                 'serviceId' => "1s583",
                 'sourcePort' => 8080,
                 'targetPort' => 80,
@@ -337,7 +336,7 @@ use Rancher;
 use Benmag\Rancher\Factories\Entity\LoadBalancerService;
 
 $updatedLb = new LoadBalancerService([
-    'name' => 'lb',
+    'name' => 'lb-updated',
     'stackId' => '1st316',
     'launchConfig' => [
         'ports' => [
