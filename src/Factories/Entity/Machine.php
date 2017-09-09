@@ -40,7 +40,7 @@ class Machine extends AbstractEntity
     /**
      * @var string
      */
-    public $engineInstallUrl = "https://releases.rancher.com/install-docker/1.10.sh";
+    public $engineInstallUrl = "https://releases.rancher.com/install-docker/1.12.sh";
 
     /**
      * The labels on a machine.
