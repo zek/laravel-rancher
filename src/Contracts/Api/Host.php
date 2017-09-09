@@ -29,6 +29,14 @@ interface Host {
 
 
     /**
+     * Send create request to API
+     *
+     * @param \Benmag\Rancher\Factories\Entity\Host $host
+     * @return \Benmag\Rancher\Factories\Entity\Host
+     */
+    public function create(\Benmag\Rancher\Factories\Entity\Host $host);
+
+    /**
      * Send update host request to API
      *
      * @param $id

@@ -23,13 +23,6 @@ class Host extends AbstractEntity
     public $description;
 
     /**
-     * Account environment belongs to
-     *
-     * @var string
-     */
-    public $accountId;
-
-    /**
      * The given hostname for the host.
      *
      * @var string
@@ -37,9 +30,41 @@ class Host extends AbstractEntity
     public $hostname;
 
     /**
+     * Account environment belongs to
+     *
+     * @var string
+     */
+    public $accountId;
+
+    /**
+     * @var string
+     */
+    public $state;
+
+    /**
+     * @var string
+     */
+    public $agentState;
+
+    /**
+     * @var string
+     */
+    public $transitioning;
+
+    /**
+     * @var string
+     */
+    public $transitioningMessage;
+
+    /**
+     * @var string
+     */
+    public $transitioningProgress;
+
+    /**
      * Information about the host
      *
-     * @var json
+     * @var array
      */
     public $info;
 
@@ -51,13 +76,36 @@ class Host extends AbstractEntity
     public $publicEndpoints;
 
     /**
-     * @var string
+     * The labels on a host.
+     *
+     * @var string[]
      */
-    public $state;
+    public $labels;
 
     /**
      * @var string
      */
-    public $agentState;
+    public $engineInstallUrl = "https://releases.rancher.com/install-docker/1.12.sh";
+
+    /**
+     * Configuration for launching
+     * a host on hosting provider
+     *
+     * @var mixed
+     */
+    public $amazonec2Config,
+        $digitaloceanConfig,
+        $exoscaleConfig,
+        $googleConfig,
+        $hypervConfig,
+        $openstackConfig,
+        $packetConfig,
+        $rackspaceConfig,
+        $softlayerConfig,
+        $ubiquityConfig,
+        $virtualboxConfig,
+        $vmwarefusionConfig,
+        $vmwarevcloudairConfig,
+        $vmwarevsphereConfig;
 
 }

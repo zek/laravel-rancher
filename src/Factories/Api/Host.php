@@ -27,7 +27,25 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
      */
     protected $endpoint = "hosts";
 
+    /**
+     * {@inheritdoc}
+     */
+    public function create(HostEntity $host)
+    {
 
+        // Data
+        $data = $host->toArray();
+
+        // Send "create" request
+        $host = $this->client->post($this->getEndpoint(), $data, ['content_type' => 'json']);
+
+        // Parse response
+        $host = json_decode($host);
+
+        // Create ContainerEntity from response
+        return new HostEntity($host);
+
+    }
 
     /**
      * {@inheritdoc}
@@ -43,6 +61,23 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
 
         // Create ContainerEntity from response
         return new HostEntity($host);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete($id)
+    {
+
+        // Send delete request
+        $machine = $this->client->delete($this->getEndpoint()."/".$id);
+
+        // Parse response
+        $machine = json_decode($machine);
+
+        // Create ContainerEntity from response
+        return new HostEntity($machine);
 
     }
 
