@@ -85,5 +85,32 @@ class Service extends AbstractEntity
      * @var string
      */
     public $publicEndpoints;
+
+    /**
+     * Health state of the service
+     *
+     * @var string
+     */
+    public $healthState;
+
+    /**
+     * Service transitioning state
+     *
+     * @var string
+     */
+    public $transitioning;
+
+    /**
+     * Service transitioning message
+     *
+     * @var string
+     */
+    public $transitioningMessage;
+
+    /**
+     * Service transitioning progress
+     * @var string
+     */
+    public $transitioningProgress;
     
 }
