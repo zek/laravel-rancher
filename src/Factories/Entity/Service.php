@@ -73,6 +73,13 @@ class Service extends AbstractEntity
     public $launchConfig;
 
     /**
+     * Services that have been linked to this service
+     *
+     * @var object
+     */
+    public $linkedServices;
+
+    /**
      * The fqdn of a service when the DNS service has started.
      *
      * @var string
@@ -109,6 +116,7 @@ class Service extends AbstractEntity
 
     /**
      * Service transitioning progress
+     *
      * @var string
      */
     public $transitioningProgress;
