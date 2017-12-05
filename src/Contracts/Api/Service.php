@@ -103,7 +103,13 @@ interface Service {
      */
     public function removeServiceLink($id, array $serviceLink);
 
-
+    /**
+     * Return the service log for a service
+     *
+     * @param $id
+     * @return \Benmag\Rancher\Factories\Entity\ServiceLog
+     */
+    public function logs($id);
 
     /**
      * Trigger a Service upgrade

@@ -3,6 +3,7 @@
 namespace Benmag\Rancher\Factories\Api;
 
 use Benmag\Rancher\Factories\Entity\Service as ServiceEntity;
+use Benmag\Rancher\Factories\Entity\ServiceLog as ServiceLogEntity;
 
 /**
  * Rancher API wrapper for Laravel
@@ -199,8 +200,24 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function logs($id)
+    {
 
+        // Prep the endpoint
+        $endpoint = $this->getEndpoint() . "/" . $id . "/servicelogs";
 
+        // Get the resource
+        $response = $this->client->get($endpoint);
+
+        // Handle response
+        return array_map(function ($object) {
+            return new ServiceLogEntity($object);
+        }, json_decode($response)->data);
+
+    }
 
     /**
      * {@inheritdoc}
@@ -294,5 +311,7 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
         return new ServiceEntity($service);
 
     }
+
+
 
 }
