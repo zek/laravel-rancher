@@ -222,6 +222,19 @@ class Service extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Servi
     /**
      * {@inheritdoc}
      */
+    public function containerStats($id)
+    {
+        // Get access token for container stats
+        $response = $this->client->get($this->getEndpoint() . "/" . $id . "/containerstats");
+
+        // Return response containing stats access token
+        return json_decode($response);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function upgrade($id, array $serviceUpgrade)
     {
 

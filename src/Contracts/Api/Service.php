@@ -112,6 +112,14 @@ interface Service {
     public function logs($id);
 
     /**
+     * Get access token for container stats websocket
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function containerStats($id);
+
+    /**
      * Trigger a Service upgrade
      *
      * @param $id
