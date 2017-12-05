@@ -6,7 +6,7 @@ class Container extends AbstractEntity
 {
 
     /**
-     * The unique identifier for the host
+     * The unique identifier for the container
      *
      * @var string
      */
@@ -53,6 +53,13 @@ class Container extends AbstractEntity
     public $ports;
 
     /**
+     * Ports exposed by user
+     *
+     * @var array[string]
+     */
+    public $userPorts;
+
+    /**
      * Data volumes for container
      *
      * @var array[string]
@@ -60,11 +67,25 @@ class Container extends AbstractEntity
     public $dataVolumes;
 
     /**
+     * The host the container is on
+     *
+     * @var string
+     */
+    public $hostId;
+
+    /**
      * Account container belongs to
      *
      * @var string
      */
     public $accountId;
+
+    /**
+     * The unique Docker ID
+     *
+     * @var string
+     */
+    public $externalId;
 
     /**
      * Current state of container
@@ -93,5 +114,12 @@ class Container extends AbstractEntity
      * @var bool
      */
     public $tty = true;
+
+    /**
+     * The time the container was first running
+     *
+     * @var string
+     */
+    public $firstRunning;
 
 }
