@@ -120,5 +120,12 @@ class Service extends AbstractEntity
      * @var string
      */
     public $transitioningProgress;
-    
+
+    /**
+     * List of instances for the service
+     *
+     * @var array
+     */
+    public $instanceIds;
+
 }

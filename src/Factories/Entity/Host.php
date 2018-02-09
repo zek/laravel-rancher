@@ -76,6 +76,13 @@ class Host extends AbstractEntity
     public $publicEndpoints;
 
     /**
+     * List of instances on host
+     *
+     * @var array
+     */
+    public $instanceIds;
+
+    /**
      * The labels on a host.
      *
      * @var string[]
