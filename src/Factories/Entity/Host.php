@@ -100,7 +100,8 @@ class Host extends AbstractEntity
      *
      * @var mixed
      */
-    public $amazonec2Config,
+    public $driver,
+        $amazonec2Config,
         $digitaloceanConfig,
         $exoscaleConfig,
         $googleConfig,
