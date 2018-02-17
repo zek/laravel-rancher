@@ -95,8 +95,7 @@ class Host extends AbstractEntity
     public $engineInstallUrl = "https://releases.rancher.com/install-docker/1.12.sh";
 
     /**
-     * Configuration for launching
-     * a host on hosting provider
+     * Configuration for launching a host on hosting provider
      *
      * @var mixed
      */
@@ -111,6 +110,7 @@ class Host extends AbstractEntity
         $rackspaceConfig,
         $softlayerConfig,
         $ubiquityConfig,
+        $vultrConfig,
         $virtualboxConfig,
         $vmwarefusionConfig,
         $vmwarevcloudairConfig,
