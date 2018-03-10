@@ -2,6 +2,7 @@
 
 namespace Benmag\Rancher\Factories;
 
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client as HttpClient;
 
 /**
@@ -24,7 +25,13 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     public function __construct($baseUrl, $accessKey, $secretKey)
     {
+
+        $stack = HandlerStack::create();
+
+        $stack->push(new ErrorHandler);
+
         $this->client = new HttpClient([
+            'handler' => $stack,
             'base_uri' => $baseUrl,
             'auth' => [$accessKey, $secretKey],
         ]);
