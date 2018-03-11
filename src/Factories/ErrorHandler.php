@@ -97,9 +97,15 @@ class ErrorHandler {
             case "InvalidType":
                 throw new InvalidTypeException("Invalid type exception", $rancher->status);
             case "ActionNotAvailable":
-                throw new ActionNotAvailableException($rancher->message || "This action is not currently available", $rancher->status);
+                throw new ActionNotAvailableException(
+                    $rancher->message ? $rancher->message : "This action is not currently available",
+                    $rancher->status
+                );
             case "InvalidState":
-                throw new InvalidStateException($rancher->message || "Invalid state", $rancher->status);
+                throw new InvalidStateException(
+                    $rancher->message ? $rancher->message : "Invalid state",
+                    $rancher->status
+                );
             case "ServerError":
                 throw new ServerErrorException($rancher->message, $rancher->status);
             case "ClusterUnavailable":
