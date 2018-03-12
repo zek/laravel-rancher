@@ -67,7 +67,7 @@ class ErrorHandler {
             case "InvalidDateFormat":
                 throw new InvalidDateFormatException($rancher->message, $rancher->status);
             case "InvalidFormat":
-                throw new InvalidFormatException($rancher->message, $rancher->status);
+                throw new InvalidFormatException("Invalid format for {$rancher->fieldName}", $rancher->status);
             case "InvalidReference":
                 throw new InvalidReferenceException($rancher->message, $rancher->status);
             case "NotNullable":
@@ -97,21 +97,15 @@ class ErrorHandler {
             case "InvalidType":
                 throw new InvalidTypeException("Invalid type exception", $rancher->status);
             case "ActionNotAvailable":
-                throw new ActionNotAvailableException(
-                    $rancher->message ? $rancher->message : "This action is not currently available",
-                    $rancher->status
-                );
+                throw new ActionNotAvailableException($rancher->message ? $rancher->message : "This action is not currently available", $rancher->status);
             case "InvalidState":
-                throw new InvalidStateException(
-                    $rancher->message ? $rancher->message : "Invalid state",
-                    $rancher->status
-                );
+                throw new InvalidStateException($rancher->message ? $rancher->message : "Invalid state", $rancher->status);
             case "ServerError":
                 throw new ServerErrorException($rancher->message, $rancher->status);
             case "ClusterUnavailable":
                 throw new ClusterUnavailableException($rancher->message, $rancher->status);
             default:
-                throw new RancherErrorException($rancher->message || $rancher->rancher->code, $rancher->status);
+                throw new RancherErrorException($rancher->message ? $rancher->message : $rancher->rancher->code, $rancher->status);
 
         }
 
