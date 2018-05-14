@@ -37,4 +37,9 @@ class Registry extends AbstractEntity
      */
     public $state;
 
+    /**
+     * @var string
+     */
+    public $createdTS;
+
 }
