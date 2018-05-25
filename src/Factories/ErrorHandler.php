@@ -55,7 +55,7 @@ class ErrorHandler {
 
         $rancher = json_decode($response->getBody()->getContents());
 
-        switch($rancher->code) {
+        switch(str_replace(' ', '', $rancher->code)) {
             case "Unauthorized":
                 throw new UnauthorizedException($rancher->message, $rancher->status);
             case "PermissionDenied":
