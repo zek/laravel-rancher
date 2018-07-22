@@ -67,9 +67,9 @@ class ErrorHandler {
             case "InvalidDateFormat":
                 throw new InvalidDateFormatException($rancher->message, $rancher->status);
             case "InvalidFormat":
-                throw new InvalidFormatException("Invalid format for {$rancher->fieldName}", $rancher->status);
+                throw new InvalidFormatException(property_exists($rancher, 'fieldName') ? "Invalid format for {$rancher->fieldName}" : "Invalid format", $rancher->status);
             case "InvalidReference":
-                throw new InvalidReferenceException($rancher->message, $rancher->status);
+                throw new InvalidReferenceException(property_exists($rancher, 'fieldName') ? "Invalid reference for {$rancher->fieldName}" : "Invalid reference", $rancher->status);
             case "NotNullable":
                 throw new NotNullableException("{$rancher->fieldName} must be set", $rancher->status);
             case "NotUnique":
