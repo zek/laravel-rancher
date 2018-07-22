@@ -2,6 +2,7 @@
 
 namespace Benmag\Rancher;
 
+use Benmag\Rancher\Factories\Api\Certificate;
 use Benmag\Rancher\Factories\Api\Container;
 use Benmag\Rancher\Factories\Api\Stack;
 use Benmag\Rancher\Factories\Api\Host;
@@ -120,6 +121,15 @@ class Rancher {
     public function serviceConsumeMap()
     {
         return new ServiceConsumeMap($this->client);
+    }
+
+
+    /**
+     * @return Factories\Api\Certificate
+     */
+    public function certificate()
+    {
+        return new Certificate($this->client);
     }
 
 }

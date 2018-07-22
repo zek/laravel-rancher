@@ -408,6 +408,7 @@ Rancher::loadBalancerService()->removeServiceLink("1s24", $remove);
 [todo]
 
 ### Registry
+
 #### Add Registry
 ```php
 use Rancher; 
@@ -420,10 +421,27 @@ $registry = new Registry([
 $registryResponse = Rancher::registry()->project("1a8")->create($registry));
 ```
 
-[todo]
+#### Activate Registry 
+
+```
+use Rancher; 
+
+Rancher::registry()->activate($id);
+```
+
+
+#### Deactivate Registry 
+
+```
+use Rancher; 
+
+Rancher::registry()->deactivate($id);
+```
+
 
 ### Registry Credential 
-#### Add account 
+
+#### Add registry credential  
 ```php
 use Rancher; 
 use Benmag\Rancher\Factories\Entity\RegistryCredential;
@@ -438,11 +456,58 @@ $cred = new RancherRegistryCredential([
 Rancher::registryCredential()->create($cred);
 ```
 
+
 ### Registration Token
-[todo]
+
+#### Create Registration Token
+```
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\RegistrationToken;
+
+Rancher::registrationToken()->create(new RegistrationToken([
+    'accountId' => 'rancerProjectId'
+]));
+```
+
+#### Fetch Registration Tokens
+```
+use Rancher; 
+
+Rancher::registrationToken()->filter(['state' => 'active'])->get()
+```
 
 ### Service Consume Map
 [todo]
+
+### Certificates
+
+#### Get certificates
+```
+use Rancher; 
+Rancher::certificate()->all();
+ ```
+
+#### Create a certificate 
+```
+use Rancher; 
+use Benmag\Rancher\Factories\Entity\Certificate;
+
+$cert = new Certificate([
+    'name' => 'My Cert', 
+    'description' => 'Hello World',
+    'key' => 'Your Private Key', 
+    'cert' => 'Your Certificate',
+    'certChain' => 'Your Chain Certs',
+]);
+
+Rancher::certificate()->create($cert);
+```
+
+#### Remove a certificate
+```
+use Rancher; 
+Rancher::certificate()->delete($id);
+ ```
 
 ### Query Building 
 The wrapper also provides a convenient way for you to build fairly elaborate Rancher API requests.
@@ -554,8 +619,6 @@ The Rancher API is extensive. I've attempted to cover all of the key endpoints  
   - remove
   - rollback
   - upgrade
-- Registry `[0]`
-- RegistryCredential `[0]` 
 - Account `[0]`
 - ApiKey `[0]`
 - Certificate `[0]`
