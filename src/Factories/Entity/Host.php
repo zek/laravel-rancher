@@ -49,6 +49,11 @@ class Host extends AbstractEntity
     /**
      * @var string
      */
+    public $agentIpAddress;
+    
+    /**
+     * @var string
+     */
     public $transitioning;
 
     /**
