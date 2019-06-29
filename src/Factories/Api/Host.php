@@ -53,8 +53,11 @@ class Host extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Host
     public function update($id, HostEntity $host)
     {
 
+        // Strip empty values
+        $data = array_filter($host->toArray());
+
         // Send "update" environment request
-        $host = $this->client->put($this->getEndpoint() . "/" . $id, $host->toArray());
+        $host = $this->client->put($this->getEndpoint() . "/" . $id, $data, ['content_type' => 'json']);
 
         // Parse response
         $host = json_decode($host);
