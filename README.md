@@ -35,7 +35,7 @@ RANCHER_BASE_URL=http://localhost:8080/v1/
 RANCHER_ACCESS_KEY=xxxxxxx
 RANCHER_SECRET_KEY=xxxxxxx
 ````
->You may also publish the config file to `config/rancher.pzhp` for editing:
+>You may also publish the config file to `config/rancher.php` for editing:
 `php artisan vendor:publish --provider="Benmag\Rancher\RancherServiceProvider"`
  
 ### Notes
