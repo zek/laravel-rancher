@@ -1,6 +1,6 @@
 {
     "name": "th0rn0/laravel-rancher",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "description": "Rancher API wrapper for Laravel 6",
     "keywords": ["th0rn0","rancher", "docker"],
     "homepage": "https://github.com/th0rn0/laravel-rancher",
