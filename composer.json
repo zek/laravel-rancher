@@ -1,18 +1,22 @@
 {
-    "name": "benmag/laravel-rancher",
-    "version": "1.0.2",
-    "description": "Rancher API wrapper for Laravel",
-    "keywords": ["benmag","rancher", "docker"],
-    "homepage": "https://github.com/benmag/laravel-rancher",
+    "name": "th0rn0/laravel-rancher",
+    "version": "1.0.0",
+    "description": "Rancher API wrapper for Laravel 6",
+    "keywords": ["th0rn0","rancher", "docker"],
+    "homepage": "https://github.com/th0rn0/laravel-rancher",
     "license": "MIT",
     "authors": [
         {
             "name": "Ben Mag",
             "homepage": "http://github.com/benmag"
+        },
+        {
+            "name": "Thornton Phillis",
+            "homepage": "http://github.com/th0rn0"
         }
     ],
     "require": {
-        "illuminate/support": "~5.1",
+        "illuminate/support": "~6.0",
         "php" : "~5.5|~7.0",
         "guzzlehttp/guzzle": "~6.0"
     },
