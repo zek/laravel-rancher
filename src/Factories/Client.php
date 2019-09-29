@@ -4,6 +4,7 @@ namespace Benmag\Rancher\Factories;
 
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Support\Arr;
 
 /**
  * Rancher API wrapper for Laravel
@@ -46,7 +47,7 @@ class Client implements \Benmag\Rancher\Contracts\Client {
      */
     private function prepareData($params = [], $options = [])
     {
-        if(array_get($options, 'content_type') == "json") {
+        if(Arr::get($options, 'content_type') == "json") {
             $data['json'] = $params; // pass data as array which gets json_encoded
         } else {
             $data['query'] = $this->prepareQueryString($params); // pass data as query string
