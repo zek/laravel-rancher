@@ -150,7 +150,16 @@ class Stack extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Stack
      */
     public function upgrade($id, \Benmag\Rancher\Factories\Entity\Stack $stack)
     {
-        //
+        // Strip empty values
+        $data = array_merge(array_filter($stack->toArray()), ['action' => 'upgrade']);
+        // Send "upgrade" stack request
+        $stack = $this->client->post($this->getEndpoint()."/".$id ."/?action=upgrade", $data, ['content_type' => 'json']);
+      
+        // Parse response
+        $stack = json_decode($stack);
+
+        // Create StackEntity from response
+        return new StackEntity($stack);
     }
 
     /**
