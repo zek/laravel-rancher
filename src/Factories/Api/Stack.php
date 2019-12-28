@@ -167,7 +167,16 @@ class Stack extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Stack
      */
     public function finishUpgrade($id)
     {
-        //
+        // Send "finishupgrade" stack request
+        $stack = $this->client->post($this->getEndpoint()."/".$id, [
+            'action' => 'finishupgrade'
+        ]);
+        
+        // Parse response
+        $stack = json_decode($stack);
+
+        // Create StackEntity from response
+        return new StackEntity($stack);
     }
 
     /**
@@ -175,7 +184,16 @@ class Stack extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Stack
      */
     public function cancelUpgrade($id)
     {
-        //
+        // Send "cancelupgrade" stack request
+        $stack = $this->client->post($this->getEndpoint()."/".$id, [
+            'action' => 'cancelupgrade'
+        ]);
+        
+        // Parse response
+        $stack = json_decode($stack);
+
+        // Create StackEntity from response
+        return new StackEntity($stack);
     }
 
     /**
@@ -183,7 +201,16 @@ class Stack extends AbstractApi implements \Benmag\Rancher\Contracts\Api\Stack
      */
     public function rollback($id)
     {
-        //
+        // Send "rollback" stack request
+        $stack = $this->client->post($this->getEndpoint()."/".$id, [
+            'action' => 'rollback'
+        ]);
+        
+        // Parse response
+        $stack = json_decode($stack);
+
+        // Create StackEntity from response
+        return new StackEntity($stack);
     }
 
     /**
